@@ -3,680 +3,572 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Project Mode — a working manual for building real things inside a Claude Project</title>
-<meta name="description" content="A free, plain-English manual for running an actual product build inside a Claude Project: what CLAUDE.md, ROADMAP.md and REVIEW.md do, how plan mode works, and the eight elements that turn a chat into a workspace. With turnkey templates.">
-<meta property="og:title" content="Project Mode — a working manual">
-<meta property="og:description" content="What CLAUDE.md and the other .md files actually do, how plan mode works, and how to set up a Claude Project for a real build. Free, no signup.">
-<meta property="og:type" content="article">
+<title>3 WEBS — How Value Moves Across the Human, AI and Machine Webs | Dan Ionescu</title>
+<meta name="description" content="The companion site to 3 WEBS by Dan Ionescu. Six language editions, the six-verb framework, and a check of where your own company stands across the Human, AI and Machine Webs.">
+<link rel="canonical" href="https://the3webs.com/en/">
+
+<link rel="alternate" hreflang="en" href="https://the3webs.com/en/">
+<link rel="alternate" hreflang="fr" href="https://the3webs.com/fr/">
+<link rel="alternate" hreflang="de" href="https://the3webs.com/de/">
+<link rel="alternate" hreflang="it" href="https://the3webs.com/it/">
+<link rel="alternate" hreflang="es" href="https://the3webs.com/es/">
+<link rel="alternate" hreflang="pt" href="https://the3webs.com/pt/">
+<link rel="alternate" hreflang="x-default" href="https://the3webs.com/en/">
+
+<meta property="og:type" content="book">
+<meta property="og:site_name" content="3 WEBS">
+<meta property="og:title" content="3 WEBS — The Map. The Economy. The Advantage.">
+<meta property="og:description" content="How value moves across the Human, AI and Machine Webs — and how to win in all three.">
+<meta property="og:url" content="https://the3webs.com/en/">
+<meta property="og:image" content="https://the3webs.com/assets/cover-3webs.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="generator" content="ADI Engine — AiVenture / 5thelement.ai">
+<meta name="ai-content-type" content="book">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Book",
+      "@id": "https://the3webs.com/#book",
+      "name": "3 WEBS",
+      "alternateName": "The 3 Webs",
+      "headline": "How Value Moves Across the Human, AI, and Machine Webs — and How to Win in All Three",
+      "author": { "@id": "https://the3webs.com/#author" },
+      "inLanguage": ["en", "fr", "de", "it", "es", "pt"],
+      "numberOfPages": 164,
+      "isbn": "9798171384579",
+      "bookFormat": "https://schema.org/Paperback",
+      "url": "https://the3webs.com/en/",
+      "image": "https://the3webs.com/assets/cover-3webs.png",
+      "about": ["Human Web", "AI Web", "Machine Web", "AI discovery", "agent-to-agent commerce"],
+      "publisher": { "@id": "https://the3webs.com/#publisher" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://the3webs.com/#author",
+      "name": "Dan Ionescu",
+      "jobTitle": "Founder, ADI Framework",
+      "worksFor": { "@id": "https://the3webs.com/#publisher" },
+      "knowsAbout": ["AI discovery infrastructure", "agent-to-agent protocols", "enterprise IT"]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://the3webs.com/#publisher",
+      "name": "AiVenture S.R.L.",
+      "url": "https://5thelement.ai/",
+      "identifier": "ROONRC.J2025016406000",
+      "vatID": "51415878",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Drumul Pădurea Pustnicu 141C, Corp A, Etaj 2, Ap. 5",
+        "addressLocality": "București",
+        "addressRegion": "Sector 1",
+        "addressCountry": "RO"
+      }
+    }
+  ]
+}
+</script>
+
 <style>
 :root{
-  --bg:#101418; --panel:#161c23; --panel-2:#1b222a; --line:#2b333d;
-  --text:#e7e3db; --muted:#98a3ae; --strong:#ffffff;
-  --amber:#d8a13f; --sage:#8aa86f; --clay:#c96b45;
-  --shadow:0 1px 0 rgba(255,255,255,.03);
+  --bg:#0a0d12; --panel:#111721; --panel-2:#161d29; --line:#222c3a; --line-2:#2e3a4b;
+  --text:#e8e6e1; --muted:#8e9bab; --dim:#5f6b7a; --strong:#ffffff;
+  --gold:#d4a03c; --human:#4a9eff; --ai:#a855f7; --machine:#f59e0b;
 }
 html.light{
-  --bg:#f3f0e9; --panel:#ffffff; --panel-2:#faf8f3; --line:#ddd6c8;
-  --text:#1a1f24; --muted:#5c6670; --strong:#000000;
-  --amber:#9a6a12; --sage:#4d6b39; --clay:#a2451f;
-  --shadow:0 1px 2px rgba(20,25,30,.06);
+  --bg:#f5f3ee; --panel:#ffffff; --panel-2:#faf8f4; --line:#ddd8cc; --line-2:#c9c2b2;
+  --text:#161a20; --muted:#5a6472; --dim:#7d8794; --strong:#000000;
+  --gold:#8a6410; --human:#1560b8; --ai:#7326b8; --machine:#a35c05;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-body{
-  margin:0; background:var(--bg); color:var(--text);
-  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
-}
-h1,h2,h3,h4{font-family:"IBM Plex Serif",Georgia,serif; font-weight:600; color:var(--strong); line-height:1.25; margin:0}
-code,pre,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
-a{color:var(--text); text-decoration-color:var(--amber); text-underline-offset:3px}
-a:hover{color:var(--amber)}
-:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.mono,code{font-family:"IBM Plex Mono",ui-monospace,monospace}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1,h2,h3,h4{margin:0;color:var(--strong);line-height:1.15;font-weight:600}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 
-/* theme toggle — fixed top-left */
-#theme{
-  position:fixed; top:68px; left:18px; z-index:60;
-  display:flex; align-items:center; gap:8px; height:34px; padding:0 12px;
-  border-radius:8px; border:1px solid var(--line); cursor:pointer;
-  background:var(--strong); color:var(--bg);
-  font:500 13px/1 "IBM Plex Mono",monospace;
-}
-@media(max-width:1080px){#theme{top:12px; left:12px}}
+/* status bar */
+.status{border-bottom:1px solid var(--line);background:var(--panel);
+  font:400 12px/1 "IBM Plex Mono",monospace;color:var(--muted)}
+.status .wrap{display:flex;align-items:center;gap:18px;height:36px;flex-wrap:wrap}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;margin-right:7px}
+.status .sp{margin-left:auto}
+.edsel{background:transparent;border:1px solid var(--line-2);color:var(--muted);
+  font:400 12px "IBM Plex Mono",monospace;padding:3px 6px;border-radius:3px}
 
-/* layout */
-.wrap{max-width:1180px; margin:0 auto; padding:0 24px}
-.masthead{border-bottom:1px solid var(--line); padding:72px 0 40px}
-.eyebrow{font:500 12px/1.4 "IBM Plex Mono",monospace; letter-spacing:.04em; color:var(--amber)}
-h1{font-size:clamp(34px,5.2vw,58px); margin:14px 0 0; max-width:19ch}
-.standfirst{max-width:62ch; margin:22px 0 0; font-size:19px; color:var(--muted)}
-.meta{margin-top:26px; font:400 13px/1.6 "IBM Plex Mono",monospace; color:var(--muted)}
-.meta b{color:var(--text); font-weight:500}
+/* nav */
+nav{border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px)}
+nav .wrap{display:flex;align-items:center;gap:26px;height:58px}
+.brand{font:600 14px/1 "IBM Plex Mono",monospace;color:var(--strong);text-decoration:none;white-space:nowrap}
+.brand i{color:var(--gold);font-style:normal}
+.navlinks{display:flex;gap:20px;font:400 13px/1 "IBM Plex Mono",monospace;margin-left:8px}
+.navlinks a{color:var(--muted);text-decoration:none}
+.navlinks a:hover{color:var(--gold)}
+@media(max-width:860px){.navlinks{display:none}}
+.navcta{margin-left:auto;display:flex;gap:10px;align-items:center}
+.btn{display:inline-block;padding:9px 15px;border-radius:4px;text-decoration:none;
+  font:500 13px/1 "IBM Plex Mono",monospace;border:1px solid var(--line-2);color:var(--text)}
+.btn:hover{border-color:var(--gold);color:var(--gold)}
+.btn.solid{background:var(--gold);border-color:var(--gold);color:#0a0d12}
+html.light .btn.solid{color:#fff}
+.btn.solid:hover{opacity:.88;color:#0a0d12}
+html.light .btn.solid:hover{color:#fff}
+#theme{width:34px;height:34px;border-radius:6px;border:1px solid var(--line-2);
+  background:transparent;color:var(--muted);cursor:pointer;font-size:14px;line-height:1}
 
-.cols{display:grid; grid-template-columns:210px minmax(0,1fr); gap:56px; padding:44px 0 90px}
-@media(max-width:980px){.cols{grid-template-columns:1fr; gap:0}}
-nav.toc{position:sticky; top:24px; align-self:start; font:400 14px/1.5 "IBM Plex Mono",monospace}
-@media(max-width:980px){nav.toc{position:static; margin:0 0 44px; padding-bottom:28px; border-bottom:1px solid var(--line)}}
-nav.toc ol{list-style:none; margin:0; padding:0}
-nav.toc li{margin:0 0 9px}
-nav.toc a{display:block; color:var(--muted); text-decoration:none}
-nav.toc a:hover{color:var(--amber)}
-nav.toc .n{color:var(--line); margin-right:8px}
-html.light nav.toc .n{color:#c3bba9}
+/* section chrome */
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+.tag{font:400 12px/1 "IBM Plex Mono",monospace;color:var(--dim);margin-bottom:16px}
+h2{font-size:clamp(24px,3.4vw,34px);max-width:22ch}
+h2 em{font-style:italic;font-weight:400;color:var(--muted)}
+.sub{color:var(--muted);max-width:62ch;margin:14px 0 0}
 
-main{min-width:0; max-width:74ch}
-section{padding:0 0 12px; margin:0 0 52px}
-section>h2{font-size:29px; margin:0 0 6px}
-.chapter{font:500 12px/1 "IBM Plex Mono",monospace; color:var(--amber); display:block; margin-bottom:14px}
-h3{font-size:20px; margin:34px 0 8px}
-p{margin:14px 0}
-main>section>p:first-of-type{margin-top:16px}
-ul,ol{padding-left:20px}
-li{margin:7px 0}
-hr{border:0; border-top:1px solid var(--line); margin:52px 0}
-strong{color:var(--strong); font-weight:600}
+/* hero */
+.hero{padding:60px 0 72px;border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:56px;align-items:start}
+@media(max-width:940px){.hero .wrap{grid-template-columns:1fr;gap:40px}}
+.kicker{font:500 12px/1.5 "IBM Plex Mono",monospace;color:var(--gold);letter-spacing:.06em}
+h1{font-size:clamp(40px,7vw,76px);letter-spacing:-.02em;margin:16px 0 0;font-weight:700}
+h1 .num{color:var(--gold)}
+.tagline{font-size:clamp(17px,2.2vw,21px);color:var(--text);max-width:34ch;margin:20px 0 0;line-height:1.4}
+.tagline b{color:var(--human);font-weight:600}
+.tagline i{color:var(--ai);font-style:normal;font-weight:600}
+.tagline u{color:var(--machine);text-decoration:none;font-weight:600}
+.filelabel{font:400 12px/1 "IBM Plex Mono",monospace;color:var(--dim);margin:38px 0 12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:5px;overflow:hidden}
+@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--panel);padding:15px 14px}
+.stat b{display:block;font:600 22px/1 "IBM Plex Mono",monospace;color:var(--strong)}
+.stat span{display:block;font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.35}
+.herocta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;align-items:center}
+.herocta small{color:var(--dim);font:400 12px "IBM Plex Mono",monospace}
 
-.lede{font-size:19px; color:var(--muted); border-left:2px solid var(--amber); padding-left:18px; margin:20px 0 26px}
+.covercard{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px}
+.covercard .cl{display:flex;justify-content:space-between;font:400 11.5px/1 "IBM Plex Mono",monospace;
+  color:var(--dim);margin-bottom:14px}
+.covercard .cl span:last-child{color:var(--gold)}
+.covercard img{width:100%;height:auto;display:block;border-radius:4px;background:var(--panel-2)}
+.covercard .nm{margin-top:16px;font:600 16px/1.2 "IBM Plex Sans",sans-serif;color:var(--strong)}
+.covercard .cr{font:400 12px/1.4 "IBM Plex Mono",monospace;color:var(--muted);margin-top:5px}
+.covercard blockquote{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);
+  font-size:14px;color:var(--muted);font-style:italic;line-height:1.5}
 
-figure{margin:26px 0}
-figcaption{font:400 13px/1.5 "IBM Plex Mono",monospace; color:var(--muted); margin-top:10px}
+/* verbs */
+.verbs{border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:34px}
+.verb{display:grid;grid-template-columns:52px 150px 1fr;gap:20px;align-items:baseline;
+  padding:18px 20px;border-bottom:1px solid var(--line)}
+.verb:last-child{border-bottom:0}
+@media(max-width:720px){.verb{grid-template-columns:44px 1fr;gap:10px}.verb .vd{grid-column:2}}
+.verb .vn{font:500 12px/1 "IBM Plex Mono",monospace;color:var(--dim)}
+.verb .vt{font:600 15px/1 "IBM Plex Mono",monospace;color:var(--strong);letter-spacing:.04em}
+.verb .vd{font-size:14.5px;color:var(--muted);line-height:1.5}
+.verb:nth-child(1) .vt{color:var(--human)}
+.verb:nth-child(2) .vt{color:var(--human)}
+.verb:nth-child(3) .vt{color:var(--ai)}
+.verb:nth-child(4) .vt{color:var(--ai)}
+.verb:nth-child(5) .vt{color:var(--machine)}
+.verb:nth-child(6) .vt{color:var(--machine)}
 
-pre{
-  background:var(--panel); border:1px solid var(--line); border-radius:6px;
-  padding:18px 20px; overflow-x:auto; font-size:13.5px; line-height:1.62;
-  margin:0; box-shadow:var(--shadow);
-}
-pre .c{color:var(--muted)}
-.tree{white-space:pre; font-size:13.5px}
-.tree .f{color:var(--amber)}
-.tree .d{color:var(--sage)}
+/* three webs */
+.threes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:34px}
+@media(max-width:820px){.threes{grid-template-columns:1fr}}
+.web{background:var(--panel);padding:22px 20px}
+.web h3{font:600 14px/1 "IBM Plex Mono",monospace;letter-spacing:.06em}
+.web .st{font:400 11.5px/1 "IBM Plex Mono",monospace;color:var(--dim);margin-top:8px}
+.web p{font-size:14.5px;color:var(--muted);margin:16px 0 0;line-height:1.55}
+.web ul{margin:14px 0 0;padding-left:16px;font-size:14px;color:var(--text)}
+.web li{margin:4px 0}
+.web:nth-child(1) h3{color:var(--human)}
+.web:nth-child(2) h3{color:var(--ai)}
+.web:nth-child(3) h3{color:var(--machine)}
 
-.block{margin:26px 0}
-.blockhead{
-  display:flex; align-items:center; justify-content:space-between; gap:14px;
-  border:1px solid var(--line); border-bottom:0; border-radius:6px 6px 0 0;
-  background:var(--panel-2); padding:9px 14px 9px 16px;
-  font:500 13px/1 "IBM Plex Mono",monospace; color:var(--text);
-}
-.block pre{border-radius:0 0 6px 6px}
-.copy{
-  border:1px solid var(--line); background:transparent; color:var(--muted);
-  font:500 12px/1 "IBM Plex Mono",monospace; padding:6px 10px; border-radius:4px; cursor:pointer;
-}
-.copy:hover{color:var(--amber); border-color:var(--amber)}
-.copy.done{color:var(--sage); border-color:var(--sage)}
+/* check */
+.check{border:1px solid var(--line-2);border-radius:8px;background:var(--panel);
+  padding:28px;margin-top:34px;max-width:620px}
+.check label{display:block;font:400 12px/1 "IBM Plex Mono",monospace;color:var(--dim);margin:0 0 8px}
+.check input{width:100%;padding:12px 14px;border-radius:5px;border:1px solid var(--line-2);
+  background:var(--bg);color:var(--text);font:400 15px "IBM Plex Mono",monospace}
+.check input::placeholder{color:var(--dim)}
+.check .row{margin-bottom:16px}
+.check .note{font-size:13.5px;color:var(--muted);margin:16px 0 0;line-height:1.5}
+#checkmsg{font:400 13px/1.5 "IBM Plex Mono",monospace;color:var(--gold);margin-top:14px;min-height:20px}
 
-/* eight-element map */
-.map{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:6px; overflow:hidden}
-@media(max-width:760px){.map{grid-template-columns:repeat(2,1fr)}}
-.cell{background:var(--panel); padding:16px 15px}
-.cell b{display:block; font:500 12px/1.3 "IBM Plex Mono",monospace; color:var(--amber); margin-bottom:6px}
-.cell span{display:block; font-size:14.5px; color:var(--text); line-height:1.45}
-.cell em{display:block; font-style:normal; font-size:13px; color:var(--muted); margin-top:6px}
+/* author */
+.authgrid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:48px;margin-top:30px}
+@media(max-width:940px){.authgrid{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+th{text-align:left;font:400 11.5px/1.3 "IBM Plex Mono",monospace;color:var(--dim);
+  padding:0 14px 10px 0;font-weight:400;border-bottom:1px solid var(--line)}
+td{padding:11px 14px 11px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--muted)}
+td:first-child{color:var(--strong);font-family:"IBM Plex Mono",monospace;font-size:13px;white-space:nowrap}
+td a{color:var(--gold)}
 
-table{width:100%; border-collapse:collapse; margin:24px 0; font-size:15px}
-th,td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--line); vertical-align:top}
-th{font:500 12px/1.3 "IBM Plex Mono",monospace; color:var(--muted)}
-td:first-child{color:var(--strong)}
+.pill{display:inline-block;font:400 11px/1 "IBM Plex Mono",monospace;padding:4px 8px;
+  border:1px solid var(--line-2);border-radius:3px;color:var(--muted)}
+.pill.on{color:var(--gold);border-color:var(--gold)}
 
-.steps{counter-reset:s; list-style:none; padding:0; margin:26px 0}
-.steps>li{counter-increment:s; position:relative; padding:0 0 22px 46px; margin:0}
-.steps>li::before{
-  content:counter(s,decimal-leading-zero); position:absolute; left:0; top:2px;
-  font:500 13px/1 "IBM Plex Mono",monospace; color:var(--amber);
-}
-.steps h4{font-family:"IBM Plex Sans",sans-serif; font-size:16px; margin:0 0 4px}
-.steps p{margin:4px 0}
-.crumbs{font:400 13.5px/1.7 "IBM Plex Mono",monospace; color:var(--muted); margin:8px 0 0}
-.crumbs b{color:var(--text); font-weight:500}
+/* proof grid */
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:34px}
+@media(max-width:760px){.pgrid{grid-template-columns:1fr}}
+.pcell{background:var(--panel);padding:22px 20px}
+.pcell h3{font:600 13px/1 "IBM Plex Mono",monospace;color:var(--gold);letter-spacing:.04em}
+.pcell ul{margin:14px 0 0;padding-left:16px;font-size:14px;color:var(--muted)}
+.pcell li{margin:6px 0}
+.pcell li b{color:var(--text);font-weight:500}
 
-.warn{border-left:2px solid var(--clay); padding-left:18px; margin:24px 0}
-.warn h4{font-family:"IBM Plex Sans",sans-serif; font-size:16px; color:var(--clay); margin:0 0 4px}
+/* faq */
+details{border-bottom:1px solid var(--line);padding:16px 0}
+summary{cursor:pointer;font:500 15px/1.4 "IBM Plex Sans",sans-serif;color:var(--strong);
+  list-style:none;display:flex;gap:14px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary::before{content:attr(data-q);font:400 12px "IBM Plex Mono",monospace;color:var(--dim);flex:0 0 auto}
+details p{margin:12px 0 0 40px;color:var(--muted);font-size:14.5px;max-width:66ch}
+@media(max-width:600px){details p{margin-left:0}}
 
-.who{border:1px solid var(--line); border-radius:6px; padding:2px 20px 6px; margin:24px 0; background:var(--panel)}
-.who h4{font-family:"IBM Plex Sans",sans-serif; font-size:16px; margin:18px 0 2px}
-.who p{margin:4px 0 14px; color:var(--muted); font-size:15.5px}
-
-.dl{display:flex; flex-wrap:wrap; gap:10px; margin:22px 0}
-.dl a{
-  border:1px solid var(--line); border-radius:5px; padding:9px 14px; text-decoration:none;
-  font:500 13px/1 "IBM Plex Mono",monospace; color:var(--text); background:var(--panel);
-}
-.dl a:hover{border-color:var(--amber); color:var(--amber)}
-
-footer{border-top:1px solid var(--line); padding:40px 0 70px; font-size:14px; color:var(--muted)}
-footer p{margin:8px 0; max-width:70ch}
-footer a{color:var(--muted)}
-.legal{font:400 12.5px/1.7 "IBM Plex Mono",monospace; margin-top:22px}
+footer{padding:54px 0 70px;font-size:14px;color:var(--muted)}
+.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+@media(max-width:820px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+.fgrid h4{font:400 11.5px/1 "IBM Plex Mono",monospace;color:var(--dim);margin-bottom:12px}
+.fgrid a{color:var(--muted);text-decoration:none;display:block;margin:6px 0;font-size:13.5px}
+.fgrid a:hover{color:var(--gold)}
+.registry{margin-top:44px;padding-top:26px;border-top:1px solid var(--line);
+  font:400 12.5px/1.8 "IBM Plex Mono",monospace;color:var(--dim)}
+.registry b{color:var(--muted);font-weight:400}
 </style>
 </head>
 <body>
 
-<button id="theme" type="button" aria-label="Switch to light mode">☀ Light</button>
-
-<header class="masthead">
+<div class="status">
   <div class="wrap">
-    <span class="eyebrow">A free manual · English · no signup</span>
-    <h1>Project mode: how to stop re-explaining your work to Claude</h1>
-    <p class="standfirst">A chat forgets. A project doesn't. This is the whole method in one page — what a Claude Project actually is, what <code>CLAUDE.md</code> and the other markdown files do, how plan mode works, and how to set it all up for a real build. Every template on this page is yours to copy.</p>
-    <p class="meta">Written from a live build: <b>aireadyinjector.com</b>, a product site run entirely out of one project.<br>Last revised <b>2 September 2026</b>. Free to copy, adapt and republish.</p>
+    <span><span class="dot"></span>English edition</span>
+    <span>164 pages · 6×9</span>
+    <span class="sp"></span>
+    <label for="ed" style="color:var(--dim)">edition</label>
+    <select class="edsel" id="ed" aria-label="Choose edition">
+      <option value="/en/" selected>EN — English</option>
+      <option value="/fr/">FR — Français</option>
+      <option value="/de/">DE — Deutsch</option>
+      <option value="/it/">IT — Italiano</option>
+      <option value="/es/">ES — Español</option>
+      <option value="/pt/">PT — Português</option>
+    </select>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><i>3</i> WEBS · the book</a>
+    <div class="navlinks">
+      <a href="#webs">webs.md</a>
+      <a href="#framework">framework.ts</a>
+      <a href="#check">check.ts</a>
+      <a href="#author">author.md</a>
+      <a href="#editions">editions.json</a>
+      <a href="#proof">proof</a>
+      <a href="#faq">faq.md</a>
+    </div>
+    <div class="navcta">
+      <button id="theme" type="button" aria-label="Switch theme">☀</button>
+      <a class="btn solid" href="#check">Check your company</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="kicker">THE MAP. THE ECONOMY. THE ADVANTAGE.</p>
+      <h1><span class="num">3</span> WEBS</h1>
+      <p class="tagline">How value moves across the <b>Human</b>, <i>AI</i> and <u>Machine</u> Webs — and how to win in all three.</p>
+
+      <p class="filelabel">~ /book/what-this-is.md</p>
+      <div class="stats">
+        <div class="stat"><b>3</b><span>webs, one economy</span></div>
+        <div class="stat"><b>6</b><span>verbs that carry the work</span></div>
+        <div class="stat"><b>164</b><span>pages, no filler</span></div>
+        <div class="stat"><b>6</b><span>language editions</span></div>
+      </div>
+
+      <div class="herocta">
+        <a class="btn solid" href="#check">Check your company</a>
+        <a class="btn" href="#editions">See editions</a>
+        <small>free · no account</small>
+      </div>
+    </div>
+
+    <aside class="covercard">
+      <div class="cl"><span>author · founder of ADI Framework</span><span>verified ✓</span></div>
+      <img src="/assets/cover-3webs.png" width="1024" height="1536" alt="Cover of 3 WEBS by Dan Ionescu, showing the Human, AI and Machine webs side by side">
+      <p class="nm">Dan Ionescu</p>
+      <p class="cr">AiVenture S.R.L. · București</p>
+      <blockquote>“The technology changes. The economic purpose remains.”</blockquote>
+    </aside>
   </div>
 </header>
 
-<div class="wrap cols">
+<section id="webs">
+  <div class="wrap">
+    <p class="tag">// webs · the map</p>
+    <h2>Three webs, <em>one economy.</em></h2>
+    <p class="sub">Your company already exists in the first. It is being read in the second. It is barely present in the third. The book is about what that costs, and what to do about it.</p>
 
-  <nav class="toc" aria-label="Contents">
-    <ol>
-      <li><a href="#c1"><span class="n">01</span>The chat that forgets</a></li>
-      <li><a href="#c2"><span class="n">02</span>What a project is</a></li>
-      <li><a href="#c3"><span class="n">03</span>The eight elements</a></li>
-      <li><a href="#c4"><span class="n">04</span>The files, decoded</a></li>
-      <li><a href="#c5"><span class="n">05</span>Plan mode</a></li>
-      <li><a href="#c6"><span class="n">06</span>The daily loop</a></li>
-      <li><a href="#c7"><span class="n">07</span>A real project</a></li>
-      <li><a href="#c8"><span class="n">08</span>Set it up</a></li>
-      <li><a href="#c9"><span class="n">09</span>What breaks it</a></li>
-      <li><a href="#c10"><span class="n">10</span>Who it pays off for</a></li>
-      <li><a href="#c11"><span class="n">11</span>Templates</a></li>
-      <li><a href="#src"><span class="n">—</span>Sources</a></li>
-    </ol>
-  </nav>
-
-  <main>
-
-  <section id="c1">
-    <span class="chapter">01</span>
-    <h2>The chat that forgets</h2>
-    <p>Most people use Claude the same way they use a search box. Open a tab, explain the situation, get an answer, close the tab. Tomorrow, open a new tab and explain the situation again.</p>
-    <p>That works until the work has a history. Then the cost shows up in three places. You spend the first ten minutes of every session rebuilding context. You get answers that contradict decisions you made last week, because nothing recorded them. And mistakes repeat, because the correction you typed on Tuesday lived only in Tuesday's tab.</p>
-    <p class="lede">A project is the fix, and it is not a clever prompt. It is a folder of plain text files that get read before every conversation, so the context stops being something you carry and becomes something the workspace holds.</p>
-    <p>Everything below is that idea, worked out in detail.</p>
-  </section>
-
-  <hr>
-
-  <section id="c2">
-    <span class="chapter">02</span>
-    <h2>What a project actually is</h2>
-    <p>Two different things are called "project mode" in practice, and mixing them up is the first source of confusion. Both are worth using. They work the same way underneath.</p>
-
-    <h3>In the Claude app: a Project</h3>
-    <p><cite index="19-1">Projects are self-contained workspaces with their own chat histories and knowledge bases. Inside each one you can upload documents, provide context, and hold focused chats.</cite> Two parts do the work:</p>
-    <ul>
-      <li><strong>Project knowledge</strong> — <cite index="19-1">documents, text, code or other files you upload, which Claude uses to understand the context and background of every individual chat inside that project.</cite></li>
-      <li><strong>Project instructions</strong> — <cite index="19-1">a set of instructions you define once for the project, to tailor how Claude responds in it.</cite></li>
-    </ul>
-    <p><cite index="19-1">Projects are available on every plan, including free accounts, which can create up to five.</cite> <cite index="19-1">On paid plans, when the knowledge base approaches the context limit, retrieval kicks in automatically to expand capacity while keeping response quality.</cite> <cite index="19-1">On Team and Enterprise plans a project can be shared with colleagues at view or edit level.</cite></p>
-    <p>One thing to understand early: separate chats inside a project do not read each other. What they share is the instructions and the uploaded files. That is exactly why the files matter — they are the only memory that survives between conversations.</p>
-
-    <h3>In Claude Code: the repository is the project</h3>
-    <p>If you work in a repo, the same job is done by a file called <code>CLAUDE.md</code> sitting in the folder. <cite index="10-1">Each session starts with a fresh context window, and CLAUDE.md files are instructions you write to give Claude persistent context across those sessions.</cite> You don't upload it. It is read from disk at the start of every session, along with any <code>CLAUDE.md</code> in the directories above it.</p>
-    <p>The practical translation: <strong>write the files once, use them in both places.</strong> Commit them to your repo so they are versioned, and upload the same files into the app project so a phone conversation and a terminal session are working from one manual.</p>
-  </section>
-
-  <hr>
-
-  <section id="c3">
-    <span class="chapter">03</span>
-    <h2>The eight elements</h2>
-    <p>A useful way to hold the whole thing in your head: eight parts, in the order you encounter them during a day of work. The first four set the work up. The last four close it out.</p>
-
-    <figure>
-      <div class="map">
-        <div class="cell"><b>WORKSPACE</b><span>The repo</span><em>One folder that holds everything the product is.</em></div>
-        <div class="cell"><b>MEMORY</b><span>Context files</span><em>What you would otherwise re-explain, written down once.</em></div>
-        <div class="cell"><b>BRIEF</b><span>Plan mode</span><em>Agree what will happen before anything is written.</em></div>
-        <div class="cell"><b>TICKET</b><span>A clear outcome</span><em>One finished artifact, not an activity.</em></div>
-        <div class="cell"><b>EYES</b><span>Preview</span><em>Look at the result, don't take its word for it.</em></div>
-        <div class="cell"><b>REVIEW</b><span>The checklist</span><em>The same list every time, built from real mistakes.</em></div>
-        <div class="cell"><b>SCHEDULE</b><span>Routines</span><em>Work that repeats, written so it can be handed over.</em></div>
-        <div class="cell"><b>PERMISSIONS</b><span>Delegation rules</span><em>What may happen without asking, and what may not.</em></div>
+    <div class="threes">
+      <div class="web">
+        <h3>HUMAN WEB</h3>
+        <p class="st">established</p>
+        <p>People search, compare and decide. Everything you already know how to measure lives here.</p>
+        <ul><li>Clicks</li><li>Traffic</li><li>Attention</li></ul>
       </div>
-      <figcaption>Above all eight sits one more decision: which model does which job. Heavier reasoning for architecture and planning, faster models for mechanical passes.</figcaption>
-    </figure>
+      <div class="web">
+        <h3>AI WEB</h3>
+        <p class="st">observable</p>
+        <p>Models read, summarise and recommend. You are described to buyers who never reach your site.</p>
+        <ul><li>Understanding</li><li>Recommendations</li><li>Selection</li></ul>
+      </div>
+      <div class="web">
+        <h3>MACHINE WEB</h3>
+        <p class="st">emerging</p>
+        <p>Agents transact with agents. What cannot be verified by a machine cannot be bought by one.</p>
+        <ul><li>Tasks</li><li>Transactions</li><li>Outcomes</li><li>Evidence</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <p>Most people who try a project and abandon it have set up the first two and none of the rest. Workspace and memory alone give you a better-informed assistant. It is the brief, the ticket and the review that change how much finished work you actually get.</p>
-  </section>
+<section id="framework">
+  <div class="wrap">
+    <p class="tag">// framework · six verbs</p>
+    <h2>Six verbs, <em>in order.</em></h2>
+    <p class="sub">The spine of the book. Each verb is a chapter, a question, and something you can check on your own company by Friday.</p>
 
-  <hr>
+    <div class="verbs">
+      <div class="verb"><span class="vn">01</span><span class="vt">DISCOVER</span><span class="vd">Find out how you are actually described when you are not in the room.</span></div>
+      <div class="verb"><span class="vn">02</span><span class="vt">DECLARE</span><span class="vd">State who you are, what you sell and what you are accountable for, in a form both readers and machines can parse.</span></div>
+      <div class="verb"><span class="vn">03</span><span class="vt">DECIDE</span><span class="vd">Choose what you will be found for. A company that wants to be found for everything is found for nothing.</span></div>
+      <div class="verb"><span class="vn">04</span><span class="vt">PROVE</span><span class="vd">Attach evidence to every claim. In the AI Web, an unevidenced claim is not repeated.</span></div>
+      <div class="verb"><span class="vn">05</span><span class="vt">DELIVER</span><span class="vd">Make the outcome reachable, not just describable — an endpoint, a booking, a quote.</span></div>
+      <div class="verb"><span class="vn">06</span><span class="vt">VERIFY</span><span class="vd">Check that it still holds. Presence is a state that decays, not a project that finishes.</span></div>
+    </div>
+  </div>
+</section>
 
-  <section id="c4">
-    <span class="chapter">04</span>
-    <h2>The files, decoded</h2>
-    <p>This is the part that looks intimidating from the outside: a folder full of capitalised <code>.md</code> files that everyone seems to understand except you. There is no magic in them. They are markdown — plain text with headings and bullets. The capitalisation is convention, nothing more. Only one filename is special.</p>
+<section id="check">
+  <div class="wrap">
+    <p class="tag">// check · the chapter that does not fit on paper</p>
+    <h2>Run the map <em>on your own company.</em></h2>
+    <p class="sub">The book explains the three webs in general. This runs the same table against your domain and shows where you are present, where you are described by someone else, and where you do not exist at all.</p>
 
-    <figure>
-      <pre class="tree"><span class="f">CLAUDE.md</span>      how to work, who the customer is, the quality bar
-<span class="f">ROADMAP.md</span>     what matters this week, what is out of scope
-<span class="f">REVIEW.md</span>      what to check before shipping
-<span class="d">app/</span>           the thing that ships
-<span class="d">context/</span>       what the product is and why
-<span class="d">customers/</span>     who buys, what they said
-<span class="d">specs/</span>         decided behaviour, written before it is built
-<span class="d">demos/</span>         proof you can show a stranger
-<span class="d">routines/</span>      work that repeats</pre>
-      <figcaption>The repo becomes the desk. The files become the operating manual.</figcaption>
-    </figure>
+    <div class="check">
+      <div class="row">
+        <label for="dom">01 · your domain</label>
+        <input id="dom" type="text" inputmode="url" autocomplete="url" placeholder="yourcompany.com">
+      </div>
+      <div class="row">
+        <label for="mail">02 · where to send the result</label>
+        <input id="mail" type="email" autocomplete="email" placeholder="you@yourcompany.com">
+      </div>
+      <button class="btn solid" id="checkgo" type="button">Send me the map</button>
+      <p id="checkmsg" role="status"></p>
+      <p class="note">One domain, one result, no account. If you read the book, the result uses the same three columns you already know how to read.</p>
+    </div>
+  </div>
+</section>
 
-    <h3>CLAUDE.md — the only filename with special status</h3>
-    <p>In Claude Code, this one is read automatically. <cite index="10-1">Treat it as the place you write down what you would otherwise re-explain: add to it when the same mistake happens a second time, when a review catches something Claude should have known about this codebase, or when you type the same correction you typed last session.</cite></p>
-    <p>Three rules from the official guidance are worth following exactly:</p>
-    <ul>
-      <li><strong>Keep it short.</strong> <cite index="10-1">Target under 200 lines. Longer files consume more context and reduce how consistently the instructions are followed.</cite></li>
-      <li><strong>Be concrete enough to verify.</strong> <cite index="10-1">"Use 2-space indentation" beats "format code properly"; "run npm test before committing" beats "test your changes".</cite></li>
-      <li><strong>Remove contradictions.</strong> <cite index="10-1">If two rules conflict, one may get picked arbitrarily.</cite></li>
-    </ul>
-    <p>One honest limitation, stated in the docs and worth repeating: <cite index="10-1">CLAUDE.md is context, not enforced configuration.</cite> It shapes behaviour reliably; it does not physically prevent anything. If something must never happen, that belongs in a permission rule or a hook, not in a sentence.</p>
-    <p>If you're starting from an existing repo, <cite index="10-1">running <code>/init</code> generates a first CLAUDE.md by analysing the codebase, and suggests improvements rather than overwriting when one already exists.</cite></p>
+<section id="author">
+  <div class="wrap">
+    <p class="tag">// author · who wrote this and why it can be trusted</p>
+    <h2>Dan Ionescu, <em>founder of the ADI Framework.</em></h2>
 
-    <h3>ROADMAP.md — and why "out of scope" is the valuable half</h3>
-    <p>Four lines for this week. Each one a finished artifact, not an activity: "index.html v1 live" rather than "work on the homepage". Under it, two sections that matter more than the roadmap itself — decisions already made, with dates, and things explicitly out of scope.</p>
-    <p>The out-of-scope list is what stops you rebuilding the same argument every third week. It is also what stops Claude helpfully expanding the job while you weren't looking.</p>
+    <div class="authgrid">
+      <div>
+        <p class="sub" style="margin-top:18px">Two decades inside large enterprise IT, then a decade building the thing the book describes. The argument is not a forecast — it comes from watching how discovery stopped being a search problem and became an infrastructure problem, first in banking, then everywhere.</p>
+        <table>
+          <tr><th>where</th><th>what</th></tr>
+          <tr><td>IBM</td><td>Enterprise systems</td></tr>
+          <tr><td>Capgemini</td><td>Consulting and delivery</td></tr>
+          <tr><td>Société Générale</td><td>Banking IT</td></tr>
+          <tr><td>Crédit Agricole</td><td>Banking IT</td></tr>
+          <tr><td>AiVenture S.R.L.</td><td>Founder · AI discovery infrastructure · București</td></tr>
+        </table>
+      </div>
+      <div>
+        <p class="filelabel" style="margin-top:18px">~ /author/related.md</p>
+        <p style="font-size:14px;color:var(--muted);line-height:1.6">The framework in this book is built and operated, not only written about. The working systems live at <a href="https://5thelement.ai/" style="color:var(--gold)">5thelement.ai</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <h3>REVIEW.md — the checklist, built from your own mistakes</h3>
-    <p>Write it the second time something goes wrong, not the first. Every blocker in it should be traceable to a real incident: a stale number that survived into a live page, a price hardcoded into HTML instead of read from its source file, vocabulary that arrived from somewhere else and stuck. The list turns those from accidents into things that cannot pass.</p>
+<section id="editions">
+  <div class="wrap">
+    <p class="tag">// editions · registry</p>
+    <h2>Six editions, <em>one book.</em></h2>
+    <p class="sub">Amazon does not connect its marketplaces to each other. This table does. Each edition sells in its own store, under its own ISBN.</p>
 
-    <h3>The folders</h3>
-    <p>Six folders, one job each. <code>/app</code> is what ships. <code>/context</code> answers "why does this exist" for anyone arriving cold. <code>/customers</code> holds real people in their own words. <code>/specs</code> is behaviour decided before it is built — without a spec, "is this correct?" has no answer. <code>/demos</code> is proof you can show a stranger in two minutes. <code>/routines</code> is work that repeats.</p>
-
-    <h3>Other filenames you'll see</h3>
     <table>
-      <tr><th>File</th><th>What it is</th></tr>
-      <tr><td><code>CLAUDE.local.md</code></td><td><cite index="10-1">Personal project preferences that shouldn't be committed — add it to .gitignore.</cite></td></tr>
-      <tr><td><code>.claude/rules/*.md</code></td><td><cite index="10-1">Instructions split by topic, optionally scoped to file paths so they load only when Claude works with matching files.</cite></td></tr>
-      <tr><td><code>AGENTS.md</code></td><td>The neutral equivalent used by other tools. <cite index="10-1">Claude Code reads CLAUDE.md, not AGENTS.md — if your repo already has one, create a CLAUDE.md that imports it with <code>@AGENTS.md</code>.</cite></td></tr>
-      <tr><td><code>MEMORY.md</code></td><td>Not yours to write. <cite index="10-1">It is the index of auto memory — notes Claude writes for itself from your corrections and preferences, stored per repository.</cite></td></tr>
+      <tr><th>edition</th><th>path</th><th>store</th><th>ISBN</th><th>status</th></tr>
+      <tr><td>English</td><td class="mono">/en/</td><td><a href="https://www.amazon.com">amazon.com</a></td><td class="mono">979-8-1713-8457-9</td><td><span class="pill on">in review</span></td></tr>
+      <tr><td>Français</td><td class="mono">/fr/</td><td><a href="https://www.amazon.fr">amazon.fr</a></td><td>—</td><td><span class="pill">planned</span></td></tr>
+      <tr><td>Deutsch</td><td class="mono">/de/</td><td><a href="https://www.amazon.de">amazon.de</a></td><td>—</td><td><span class="pill">planned</span></td></tr>
+      <tr><td>Italiano</td><td class="mono">/it/</td><td><a href="https://www.amazon.it">amazon.it</a></td><td>—</td><td><span class="pill">planned</span></td></tr>
+      <tr><td>Español</td><td class="mono">/es/</td><td><a href="https://www.amazon.es">amazon.es</a></td><td>—</td><td><span class="pill">planned</span></td></tr>
+      <tr><td>Português</td><td class="mono">/pt/</td><td><a href="https://www.amazon.com.br">amazon.com.br</a></td><td>—</td><td><span class="pill">planned</span></td></tr>
     </table>
-    <p>Everything else — <code>ROADMAP.md</code>, <code>REVIEW.md</code>, <code>FOLDERS.md</code> — is an ordinary file with a name you chose. It has weight because <code>CLAUDE.md</code> points at it, or because you uploaded it into the project knowledge.</p>
-  </section>
+    <p class="sub" style="margin-top:20px;font-size:14px">ISBNs appear here as each edition is registered. This page reads them from <code class="mono">/specs/editions.json</code>, which is the only place they are written.</p>
+  </div>
+</section>
 
-  <hr>
+<section id="proof">
+  <div class="wrap">
+    <p class="tag">// proof · verification layer</p>
+    <h2>What a machine <em>can verify about this book.</em></h2>
+    <p class="sub">A book arguing that presence is moving toward machines should be legible to them. Identity, authorship, editions and publisher are published in structured form on this page.</p>
 
-  <section id="c5">
-    <span class="chapter">05</span>
-    <h2>Plan mode</h2>
-    <p>Plan mode is the single highest-leverage thing on this page, and the least used.</p>
-    <p><cite index="8-1">It tells Claude to research and propose changes without making them: read files, run commands to explore, write a plan — but not edit your source. Edits stay blocked until you approve the plan.</cite></p>
-    <p>The value is not politeness. It is arithmetic. A task with twenty decision points, each right most of the time, is wrong overall more often than you'd guess. Plan mode moves every one of those decisions to a moment where reversing costs a sentence instead of a rollback.</p>
-
-    <h3>How to use it</h3>
-    <p><cite index="8-1">Enter it by pressing Shift+Tab, or by prefixing a single prompt with <code>/plan</code>. You can also start a session in it with <code>claude --permission-mode plan</code>.</cite> In VS Code and the desktop app there is a mode selector next to the prompt box.</p>
-    <p><cite index="8-1">When the plan is ready, you get three choices: approve and let it run, approve and review each edit individually, or keep planning and say what to change.</cite> <cite index="8-1">Ctrl+G opens the proposed plan in your text editor so you can rewrite it directly before anything proceeds.</cite> That last one is underrated — editing the plan is faster than describing the edit.</p>
-    <p><cite index="8-1">To make it the default for a project's terminal sessions, set <code>defaultMode</code> to <code>plan</code> in the project's <code>.claude/settings.json</code>.</cite></p>
-
-    <h3>The same discipline in a normal chat</h3>
-    <p>Plan mode is a Claude Code feature. In the app there is no read-only switch — but the behaviour is one sentence in your <code>CLAUDE.md</code>, and it works:</p>
-    <div class="block">
-      <div class="blockhead"><span>plan-mode rule for a chat project</span><button class="copy" type="button">copy</button></div>
-      <pre>When a change is more than a small edit, propose the plan first:
-which files change, what changes in each, in what order, and why.
-Wait for my approval. Do not write the file until I approve.</pre>
+    <div class="pgrid">
+      <div class="pcell">
+        <h3>WORK</h3>
+        <ul>
+          <li><b>Title:</b> 3 WEBS</li>
+          <li><b>Author:</b> Dan Ionescu</li>
+          <li><b>Extent:</b> 164 pages, 6×9 in</li>
+          <li><b>ISBN (paperback):</b> 979-8-1713-8457-9</li>
+          <li><b>Editions:</b> EN, FR, DE, IT, ES, PT</li>
+        </ul>
+      </div>
+      <div class="pcell">
+        <h3>PUBLISHER</h3>
+        <ul>
+          <li><b>Legal name:</b> AiVenture S.R.L.</li>
+          <li><b>CUI:</b> 51415878</li>
+          <li><b>EUID:</b> ROONRC.J2025016406000</li>
+          <li><b>Registered:</b> București, Sector 1, Romania</li>
+        </ul>
+      </div>
+      <div class="pcell">
+        <h3>WHY IT MATTERS</h3>
+        <ul>
+          <li>An assistant asked about this book answers from the source, not from a listing</li>
+          <li>Each edition resolves to a real store and a real identifier</li>
+          <li>Claims on this page are checkable before anyone buys</li>
+        </ul>
+      </div>
+      <div class="pcell">
+        <h3>CORRECTIONS</h3>
+        <ul>
+          <li>Print is permanent; this page is not</li>
+          <li>Errata are published here, dated, as they are found</li>
+          <li>Write to the publisher and the correction lands in the next printing</li>
+        </ul>
+      </div>
     </div>
-    <p>The point of both versions is the same. Separate deciding from doing, and put yourself in between.</p>
+  </div>
+</section>
 
-    <h3>When to skip it</h3>
-    <p>A typo fix does not need a plan. Plan mode earns its keep when the cost of a wrong first step is high: anything touching several files, anything structural, anything you would have to undo by hand.</p>
-  </section>
+<section id="faq">
+  <div class="wrap">
+    <p class="tag">// faq · answers in writing</p>
+    <h2>Questions <em>people actually ask.</em></h2>
 
-  <hr>
+    <details><summary data-q="Q.01">Do I need to be technical to use the book?</summary>
+      <p>No. The six verbs are business decisions, not implementations. Where something has to be built, the book says what it must do and what to ask for — not how to code it.</p></details>
 
-  <section id="c6">
-    <span class="chapter">06</span>
-    <h2>The daily loop</h2>
-    <p>Six moves. Once it is habit, a working session looks like this and nothing else.</p>
+    <details><summary data-q="Q.02">Is this a book about SEO?</summary>
+      <p>No. SEO is one column of the map — the Human Web. The book is about what happens in the other two, where the reader has no dashboard and usually no idea they are being described.</p></details>
 
-    <ol class="steps">
-      <li>
-        <h4>Open the ticket, not the topic</h4>
-        <p>One outcome, phrased as a finished artifact. "The pricing page reads its numbers from pricing.json and passes REVIEW" — not "let's improve pricing".</p>
-      </li>
-      <li>
-        <h4>Ask for the plan</h4>
-        <p>Plan mode, or the sentence from chapter 05. Read what comes back for the thing you didn't ask for. That's where scope creep lives.</p>
-      </li>
-      <li>
-        <h4>Approve, correct, or narrow</h4>
-        <p>Correcting a plan costs a sentence. Correcting a build costs a session. Narrowing is usually the right move — half the plan, done properly.</p>
-      </li>
-      <li>
-        <h4>Build one file</h4>
-        <p>One file, finished, before the next one starts. Two half-finished files are worth less than one finished file, and much harder to review.</p>
-      </li>
-      <li>
-        <h4>Review before you look</h4>
-        <p>Ask for the header first: file name, where it goes, what URL it becomes, one line on what changed, and which blockers from REVIEW.md were cleared. Then open it.</p>
-      </li>
-      <li>
-        <h4>Write down what went wrong</h4>
-        <p>The second time a mistake appears, it goes into REVIEW.md or CLAUDE.md as a rule. This step is the entire compounding mechanism. Skip it and you are back to the chat that forgets.</p>
-      </li>
-    </ol>
-  </section>
+    <details><summary data-q="Q.03">Why only six languages?</summary>
+      <p>These are the languages where a single print-ready interior serves every market without a second production line. More editions mean a second line, which is a decision rather than an addition. A Romanian edition is planned outside Amazon, which does not support the language.</p></details>
 
-  <hr>
+    <details><summary data-q="Q.04">Will the book date quickly?</summary>
+      <p>Parts of it will. The tools move monthly; the economics do not. Where a specific fact ages, the correction is published on this page rather than left to sit in the printed copy.</p></details>
 
-  <section id="c7">
-    <span class="chapter">07</span>
-    <h2>A real project</h2>
-    <p>Abstract templates teach badly. Here is the actual shape of a project set up this week for <strong>aireadyinjector.com</strong> — a product site with its own worker, pricing file and public registry, run by one person.</p>
-    <p>Nine files went into the project knowledge: the three top-level markdown files, and one README for each of the six folders. The project instructions field got only the first and last sections of <code>CLAUDE.md</code> — how to work, and what is out of scope — because instructions are best spent on behaviour, with the detail left in the knowledge base.</p>
+    <details><summary data-q="Q.05">Can I quote it, teach from it, or buy copies for a team?</summary>
+      <p>Yes to all three. Write to the publisher for permissions, bulk copies or a talk.</p></details>
 
-    <h3>What went into CLAUDE.md, and why</h3>
-    <table>
-      <tr><th>Section</th><th>Why it exists</th></tr>
-      <tr><td>Canonical hierarchy</td><td>Company → flagship site → product → product site → audit engine. Every session used to start by re-explaining this.</td></tr>
-      <tr><td>Words we never use</td><td>Vocabulary that had drifted in from other tools and kept reappearing in copy. Listing it killed it.</td></tr>
-      <tr><td>One number, one file</td><td>The signal count had two different values in circulation. Naming the owning file ended the argument.</td></tr>
-      <tr><td>Prices come from pricing.json</td><td>A price hardcoded into HTML is a price that will be wrong on one page forever.</td></tr>
-      <tr><td>Readiness language only</td><td>Never "compliant", "certified" or "guaranteed" — claims the product cannot evidence.</td></tr>
-      <tr><td>The file header ritual</td><td>Before opening any file: number, upload path, resulting live URL, one-line description.</td></tr>
-    </table>
-
-    <p>Every line in that table came from something that had already gone wrong at least once. That is the whole method: <strong>a project file is a mistake that has been promoted to a rule.</strong></p>
-
-    <h3>What the roadmap looked like</h3>
-    <p>Four lines for the week, each one a file. Under them, the decisions with dates — including the ones that killed earlier decisions, which is the part people forget to write down. Under that, a short out-of-scope list, mostly good ideas belonging to other properties.</p>
-
-    <div class="warn">
-      <h4>The one that catches everyone</h4>
-      <p>Six folders each want a <code>README.md</code>. Uploaded into project knowledge, six files called <code>README.md</code> collide — the last one wins and you quietly lose five. Rename them <code>context-README.md</code>, <code>customers-README.md</code> and so on before uploading, or put all six into one <code>FOLDERS.md</code> as in the templates below.</p>
-    </div>
-  </section>
-
-  <hr>
-
-  <section id="c8">
-    <span class="chapter">08</span>
-    <h2>Set it up</h2>
-    <p>Eight steps, written the way I want instructions written: where you are, what you click, what you see, what you do next. Fifteen minutes for the first project.</p>
-
-    <ol class="steps">
-      <li>
-        <h4>Create the project</h4>
-        <p class="crumbs"><b>Where:</b> claude.ai, left sidebar<br><b>Click:</b> Projects → Create project<br><b>See:</b> a name and description field<br><b>Do:</b> name it after the thing, not the category. "AI-READY INJECTOR", not "Work".</p>
-      </li>
-      <li>
-        <h4>Write CLAUDE.md first</h4>
-        <p class="crumbs"><b>Where:</b> any text editor<br><b>Do:</b> start from the template below and fill in sections 1, 2 and 5 only<br><b>See:</b> roughly one page<br><b>Next:</b> resist writing more. The file grows from real corrections, not from imagination.</p>
-      </li>
-      <li>
-        <h4>Write ROADMAP.md and REVIEW.md</h4>
-        <p class="crumbs"><b>Do:</b> four roadmap lines for this week; three blockers in REVIEW you have already been burned by<br><b>See:</b> two short files<br><b>Next:</b> if you cannot name three past mistakes, ship one thing first and come back.</p>
-      </li>
-      <li>
-        <h4>Upload the knowledge</h4>
-        <p class="crumbs"><b>Where:</b> inside the project, right-hand panel<br><b>Click:</b> Project knowledge → Add content<br><b>See:</b> your files listed with the percentage of context they occupy<br><b>Watch for:</b> duplicate filenames overwriting each other.</p>
-      </li>
-      <li>
-        <h4>Set the project instructions</h4>
-        <p class="crumbs"><b>Click:</b> Set project instructions<br><b>Do:</b> paste only the "how to work with me" and "out of scope" sections<br><b>Why:</b> instructions define behaviour; the knowledge base carries information. Mixing them wastes both.</p>
-      </li>
-      <li>
-        <h4>Commit the same files to your repo</h4>
-        <p class="crumbs"><b>Where:</b> repository root<br><b>Do:</b> commit CLAUDE.md, ROADMAP.md and REVIEW.md<br><b>Result:</b> Claude Code reads CLAUDE.md automatically in every terminal session, and the files are versioned — you can see when a rule was added and why.</p>
-      </li>
-      <li>
-        <h4>Turn on plan mode where you code</h4>
-        <p class="crumbs"><b>Where:</b> a Claude Code session<br><b>Do:</b> press Shift+Tab until the status bar shows plan mode, or prefix a prompt with <code>/plan</code><br><b>See:</b> a written plan and three approval options instead of immediate edits.</p>
-      </li>
-      <li>
-        <h4>Run one real task through the loop</h4>
-        <p class="crumbs"><b>Do:</b> take the first roadmap line and run chapter 06 end to end<br><b>Then:</b> whatever annoyed you during that session becomes the first new line in CLAUDE.md or REVIEW.md. The project is now alive.</p>
-      </li>
-    </ol>
-  </section>
-
-  <hr>
-
-  <section id="c9">
-    <span class="chapter">09</span>
-    <h2>What breaks it</h2>
-
-    <h3>Writing the files as a wish list</h3>
-    <p>The instinct is to write everything you hope will be true. What works is the opposite: write only what has already caused a problem. A file of twelve earned rules outperforms a file of sixty imagined ones, and it stays short enough to be followed.</p>
-
-    <h3>Letting CLAUDE.md sprawl</h3>
-    <p><cite index="10-1">Past a couple of hundred lines, the file eats context and adherence drops.</cite> When it grows, move the detail into the knowledge base or into path-scoped rules and keep the main file as the index.</p>
-
-    <h3>Contradicting yourself across files</h3>
-    <p>Two files claiming ownership of the same fact is the most common cause of "why did it use the old number?" Section 4 of the template exists for this: one fact, one owner, written down.</p>
-
-    <h3>Treating instructions as enforcement</h3>
-    <p>A line in CLAUDE.md is strong guidance, not a lock. Anything that must be structurally impossible belongs in permission rules or a hook.</p>
-
-    <h3>Forgetting to re-upload after editing</h3>
-    <p>A file edited in your repo does not update itself in the app's project knowledge. When a rule changes, change it in both places, or the two surfaces will start giving you different answers.</p>
-
-    <h3>Never opening the files again</h3>
-    <p>A project that is set up once and never revised is just a longer prompt. The compounding comes from step six of the loop.</p>
-  </section>
-
-  <hr>
-
-  <section id="c10">
-    <span class="chapter">10</span>
-    <h2>Who it pays off for</h2>
-
-    <div class="who">
-      <h4>The solo founder</h4>
-      <p>Biggest gain, by a distance. You are the only person holding the context, and you hold it badly across three weeks and five properties. The project holds it instead, and your decisions stop evaporating.</p>
-
-      <h4>The consultant or agency</h4>
-      <p>One project per client. The client's vocabulary, constraints and approved claims live in their project and cannot leak into someone else's deliverable. Onboarding a second person becomes a file transfer instead of a briefing.</p>
-
-      <h4>The small team</h4>
-      <p>Shared projects on Team and Enterprise plans mean everyone gets the same standards without a meeting about standards. The review checklist becomes team property rather than one person's habit.</p>
-
-      <h4>The non-developer</h4>
-      <p>Nothing on this page requires code. A markdown file is a text file with headings. If you run a practice, a shop or an editorial calendar, the same three files — how we work, what matters now, what to check before publishing — do the same job.</p>
-
-      <h4>Where it is overkill</h4>
-      <p>One-off questions, throwaway drafting, anything with no history and no next session. Setting up a project for a single task costs more than it returns. The threshold is roughly: will I come back to this next week?</p>
-    </div>
-  </section>
-
-  <hr>
-
-  <section id="c11">
-    <span class="chapter">11</span>
-    <h2>Templates</h2>
-    <p>Copy from the page or download the files. No attribution required, no signup, nothing to buy.</p>
-
-    <div class="dl">
-      <a href="templates/CLAUDE.md" download>CLAUDE.md</a>
-      <a href="templates/ROADMAP.md" download>ROADMAP.md</a>
-      <a href="templates/REVIEW.md" download>REVIEW.md</a>
-      <a href="templates/FOLDERS.md" download>FOLDERS.md</a>
-    </div>
-
-    <div class="block">
-      <div class="blockhead"><span>CLAUDE.md</span><button class="copy" type="button">copy</button></div>
-      <pre># CLAUDE.md
-
-<span class="c">&lt;!-- The operating manual for this project. Claude reads this first, every session.
-     Keep it under ~200 lines. Facts and rules only — no history, no narrative. --&gt;</span>
-
-## 1. What this project is
-
-- Product: &lt;name&gt; — &lt;one sentence a stranger would understand&gt;
-- Live at: &lt;domain&gt;
-- Repository: &lt;owner/repo&gt;
-- Deployed by: &lt;how a file gets from the repo to the live site&gt;
-- Primary language: &lt;EN&gt;. Secondary: &lt;none&gt;
-
-## 2. Who the customer is
-
-- Buyer: &lt;role, company size, country&gt;
-- What they are trying to avoid: &lt;the fear or cost&gt;
-- What they are buying: &lt;the outcome, not the feature&gt;
-- What they already tried: &lt;so we don't sell it again&gt;
-
-## 3. Words we use, words we never use
-
-Use: &lt;term&gt;, &lt;term&gt;, &lt;term&gt;
-Never use: &lt;term&gt;, &lt;term&gt;, &lt;term&gt;
-
-## 4. Sources of truth
-
-One fact, one file. If two files disagree, the one named here wins.
-
-| Fact | Owner |
-| --- | --- |
-| Prices | `pricing.json` |
-| &lt;count / metric&gt; | `&lt;file&gt;` |
-| Legal identity | `&lt;file&gt;` |
-
-Never hardcode a fact that a file already owns.
-
-## 5. How to work with me
-
-- One file at a time. Finish it, then ask before starting the next.
-- Before opening any file, show: file number, exact upload path, resulting live
-  URL, one-line description of what changed.
-- When a change is more than a small edit, propose the plan first. I approve,
-  then you write.
-- If a request conflicts with this file, say so instead of guessing.
-- Ask when a decision is mine to make. Don't invent a number, a price, a date,
-  a partner name, or a legal detail.
-
-## 6. Definition of done
-
-- [ ] Passes every line in `REVIEW.md`
-- [ ] Every fact comes from a source of truth in section 4
-- [ ] Works on mobile at 380px
-- [ ] Claims nothing we cannot evidence
-
-## 7. Out of scope
-
-- &lt;thing that keeps pulling attention&gt;
-- &lt;the redesign that is not this week&gt;
-- &lt;the feature that needs a decision I have not made&gt;</pre>
-    </div>
-
-    <div class="block">
-      <div class="blockhead"><span>ROADMAP.md</span><button class="copy" type="button">copy</button></div>
-      <pre># ROADMAP.md
-
-Updated: &lt;YYYY-MM-DD&gt;
-
-## This week
-
-Four lines. Each one a finished artifact, not an activity.
-
-1. &lt;file or page&gt; — &lt;what "done" looks like&gt;
-2. &lt;file or page&gt; — &lt;what "done" looks like&gt;
-3. &lt;file or page&gt; — &lt;what "done" looks like&gt;
-4. &lt;file or page&gt; — &lt;what "done" looks like&gt;
-
-## Next, not now
-
-- &lt;the good idea that would eat the week&gt;
-- &lt;the second product&gt;
-
-## Out of scope for this project
-
-- &lt;thing that belongs to another site&gt;
-- &lt;thing that needs a partner decision&gt;
-
-## Decisions already made
-
-- &lt;YYYY-MM-DD&gt; — &lt;decision&gt;. Reason: &lt;one line&gt;. Replaces: &lt;what it killed&gt;.
-- &lt;YYYY-MM-DD&gt; — &lt;decision&gt;. Reason: &lt;one line&gt;.
-
-## Open questions
-
-- &lt;question&gt; — needed before &lt;which roadmap line&gt;</pre>
-    </div>
-
-    <div class="block">
-      <div class="blockhead"><span>REVIEW.md</span><button class="copy" type="button">copy</button></div>
-      <pre># REVIEW.md
-
-## Blockers — a file with any of these does not ship
-
-- [ ] A number that contradicts the source of truth in `CLAUDE.md` section 4
-- [ ] A price written into the page instead of read from `pricing.json`
-- [ ] Vocabulary from the "never use" list
-- [ ] A claim we cannot evidence ("certified", "guaranteed", "compliant")
-- [ ] A link, file, or endpoint that returns 404
-- [ ] A name, logo, or partner reference I did not approve
-
-## Check before shipping
-
-- [ ] Renders at 380px wide without horizontal scroll
-- [ ] Every internal link resolves
-- [ ] Metadata matches the visible page
-- [ ] Nothing changed outside the file we agreed to touch
-
-## How to report
-
-1. File number and name
-2. Exact upload path in the repo
-3. Resulting live URL
-4. One line: what changed
-5. Which blockers were relevant and how each was cleared
-
-## Mistakes log
-
-- &lt;YYYY-MM-DD&gt; — &lt;what broke&gt; → new rule: &lt;the line added above&gt;</pre>
-    </div>
-  </section>
-
-  <hr>
-
-  <section id="src">
-    <h2>Sources</h2>
-    <p>Product behaviour on this page comes from Anthropic's own documentation, checked on 2 September 2026. Where the docs and this page disagree, the docs are right.</p>
-    <ul>
-      <li><a href="https://support.claude.com/en/articles/9517075-what-are-projects">What are projects?</a> — project knowledge, project instructions, plan availability, sharing</li>
-      <li><a href="https://code.claude.com/docs/en/memory">How Claude remembers your project</a> — CLAUDE.md, file locations, size guidance, rules, auto memory</li>
-      <li><a href="https://code.claude.com/docs/en/permission-modes">Choose a permission mode</a> — plan mode, approval options, defaults</li>
-      <li><a href="https://code.claude.com/docs/en/best-practices">Best practices for Claude Code</a></li>
-    </ul>
-  </section>
-
-  </main>
-</div>
+    <details><summary data-q="Q.06">What does the check actually do with my domain?</summary>
+      <p>It looks at what is publicly readable about your company across the three webs and returns the same table the book uses. One domain, one result. Nothing is published and nothing is sold to you afterwards.</p></details>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
-    <p><strong>Free to use.</strong> Copy this page, the templates, or the whole method into your own work, commercially or not. No attribution required.</p>
-    <p>Written by Dan Ionescu while building the AiVenture site network. If it saved you an afternoon, that was the point.</p>
-    <p class="legal">
-      AiVenture S.R.L. · CUI 51415878 · Nr. Reg. Com. J2025016406000 · EUID ROONRC.J2025016406000<br>
-      București, Sectorul 1, Drumul Pădurea Pustnicu 141C, Corp A, Etaj 2, Ap. 5, Romania<br>
-      Claude and Claude Code are products of Anthropic. This is an independent guide, not an Anthropic publication.
-    </p>
+    <div class="fgrid">
+      <div>
+        <h4>// editions</h4>
+        <a href="/en/">English</a><a href="/fr/">Français</a><a href="/de/">Deutsch</a>
+        <a href="/it/">Italiano</a><a href="/es/">Español</a><a href="/pt/">Português</a>
+      </div>
+      <div>
+        <h4>// book</h4>
+        <a href="#webs">The three webs</a><a href="#framework">Six verbs</a>
+        <a href="#author">Author</a><a href="#proof">Corrections</a>
+      </div>
+      <div>
+        <h4>// reader</h4>
+        <a href="#check">Check your company</a><a href="#faq">FAQ</a>
+        <a href="#editions">Where to buy</a>
+      </div>
+      <div>
+        <h4>// publisher</h4>
+        <a href="https://5thelement.ai/">5thelement.ai</a>
+        <a href="/privacy.html">Privacy</a><a href="/cookies.html">Cookies</a>
+      </div>
+    </div>
+
+    <div class="registry">
+      <b>publisher</b> AiVenture S.R.L. · <b>CUI</b> 51415878 · <b>Nr. Reg. Com.</b> J2025016406000 · <b>EUID</b> ROONRC.J2025016406000<br>
+      <b>registered office</b> Drumul Pădurea Pustnicu 141C, Corp A, Etaj 2, Ap. 5, București, Sector 1, Romania<br>
+      © 2026 Dan Ionescu · 3 WEBS · all rights reserved
+    </div>
   </div>
 </footer>
 
 <script>
 (function(){
-  var root=document.documentElement, btn=document.getElementById('theme');
-  function set(light){
-    root.classList.toggle('light',light);
-    root.classList.toggle('dark',!light);
-    btn.textContent = light ? '☾ Dark' : '☀ Light';
-    btn.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
-  }
-  btn.addEventListener('click',function(){ set(!root.classList.contains('light')); });
+  var root=document.documentElement,b=document.getElementById('theme');
+  function set(l){root.classList.toggle('light',l);root.classList.toggle('dark',!l);b.textContent=l?'☾':'☀';}
+  b.addEventListener('click',function(){set(!root.classList.contains('light'));});
 
-  document.querySelectorAll('.copy').forEach(function(b){
-    b.addEventListener('click',function(){
-      var pre=b.closest('.block').querySelector('pre');
-      var done=function(){ b.textContent='copied'; b.classList.add('done');
-        setTimeout(function(){ b.textContent='copy'; b.classList.remove('done'); },1600); };
-      if(navigator.clipboard&&navigator.clipboard.writeText){
-        navigator.clipboard.writeText(pre.textContent).then(done,function(){ b.textContent='select manually'; });
-      } else {
-        var r=document.createRange(); r.selectNodeContents(pre);
-        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='selected';
-      }
-    });
+  document.getElementById('ed').addEventListener('change',function(e){
+    if(e.target.value) location.href=e.target.value;
+  });
+
+  // Set this to the endpoint when the reader check is wired. Until then the
+  // button says so instead of pretending to send anything.
+  var CHECK_ENDPOINT = null;
+
+  var msg=document.getElementById('checkmsg');
+  document.getElementById('checkgo').addEventListener('click',function(){
+    var d=document.getElementById('dom').value.trim(),
+        m=document.getElementById('mail').value.trim();
+    if(!d){msg.textContent='Enter a domain first.';return;}
+    if(!m||m.indexOf('@')<1){msg.textContent='Enter an email so the result has somewhere to go.';return;}
+    if(!CHECK_ENDPOINT){
+      msg.textContent='The reader check opens with the English edition. Your domain was not sent anywhere.';
+      return;
+    }
+    msg.textContent='Sending…';
+    fetch(CHECK_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({domain:d,email:m,edition:'en'})})
+      .then(function(r){ msg.textContent = r.ok
+        ? 'On its way to '+m+'.'
+        : 'That did not go through. Try again in a minute.'; })
+      .catch(function(){ msg.textContent='That did not go through. Try again in a minute.'; });
   });
 })();
 </script>
