@@ -9,11 +9,18 @@
       "name": "English",
       "path": "/en/",
       "printed_url": "the3webs.com/en/",
-      "status": "in_production",
+      "status": "kdp_review",
       "marketplace": "https://www.amazon.com",
-      "isbn": { "paperback": null, "ebook": null },
+      "isbn": {
+        "paperback": "9798171384579",
+        "ebook": null
+      },
       "stub_line": null,
-      "release": null
+      "release": null,
+      "isbn_display": {
+        "paperback": "979-8-1713-8457-9"
+      },
+      "isbn_source": "KDP-assigned (free). Tied to Amazon distribution; not transferable to another printer."
     },
     {
       "lang": "fr",
@@ -22,7 +29,10 @@
       "printed_url": "the3webs.com/fr/",
       "status": "planned",
       "marketplace": "https://www.amazon.fr",
-      "isbn": { "paperback": null, "ebook": null },
+      "isbn": {
+        "paperback": null,
+        "ebook": null
+      },
       "stub_line": "Édition française — à paraître",
       "release": null
     },
@@ -33,7 +43,10 @@
       "printed_url": "the3webs.com/de/",
       "status": "planned",
       "marketplace": "https://www.amazon.de",
-      "isbn": { "paperback": null, "ebook": null },
+      "isbn": {
+        "paperback": null,
+        "ebook": null
+      },
       "stub_line": "Deutsche Ausgabe — in Vorbereitung",
       "release": null
     },
@@ -44,7 +57,10 @@
       "printed_url": "the3webs.com/it/",
       "status": "planned",
       "marketplace": "https://www.amazon.it",
-      "isbn": { "paperback": null, "ebook": null },
+      "isbn": {
+        "paperback": null,
+        "ebook": null
+      },
       "stub_line": "Edizione italiana — in preparazione",
       "release": null
     },
@@ -55,7 +71,10 @@
       "printed_url": "the3webs.com/es/",
       "status": "planned",
       "marketplace": "https://www.amazon.es",
-      "isbn": { "paperback": null, "ebook": null },
+      "isbn": {
+        "paperback": null,
+        "ebook": null
+      },
       "stub_line": "Edición española — en preparación",
       "release": null
     },
@@ -67,17 +86,38 @@
       "status": "planned",
       "marketplace": "https://www.amazon.com.br",
       "market_note": "Brazil. Portugal has no Amazon marketplace - confirm intended market before the PT cover is produced.",
-      "isbn": { "paperback": null, "ebook": null },
+      "isbn": {
+        "paperback": null,
+        "ebook": null
+      },
       "stub_line": "Edição em português — em preparação",
       "release": null
     }
   ],
   "excluded": [
-    { "lang": "ro", "reason": "Not a KDP supported language, eBook or print. Separate route." },
-    { "lang": "nl", "reason": "KDP accepts no PDF interior. Needs a Word or ePub production line." },
-    { "lang": "sv", "reason": "KDP accepts no PDF interior." },
-    { "lang": "da", "reason": "KDP accepts no PDF interior." },
-    { "lang": "pl", "reason": "Paperback and hardcover only, no Kindle. PDF interior not accepted." },
-    { "lang": "ja", "reason": "eBook and paperback only, no hardcover. PDF interior not accepted." }
+    {
+      "lang": "ro",
+      "reason": "Not a KDP supported language, eBook or print. Separate route."
+    },
+    {
+      "lang": "nl",
+      "reason": "KDP accepts no PDF interior. Needs a Word or ePub production line."
+    },
+    {
+      "lang": "sv",
+      "reason": "KDP accepts no PDF interior."
+    },
+    {
+      "lang": "da",
+      "reason": "KDP accepts no PDF interior."
+    },
+    {
+      "lang": "pl",
+      "reason": "Paperback and hardcover only, no Kindle. PDF interior not accepted."
+    },
+    {
+      "lang": "ja",
+      "reason": "eBook and paperback only, no hardcover. PDF interior not accepted."
+    }
   ]
 }
