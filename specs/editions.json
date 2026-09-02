@@ -1,0 +1,83 @@
+{
+  "$comment": "Source of truth for editions. Nothing about an edition is written twice. ISBNs stay null until assigned - never invent one.",
+  "updated": "2026-09-02",
+  "title_canonical": "3 WEBS",
+  "interior_format": "PDF 6x9in, 164 pages",
+  "editions": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "/en/",
+      "printed_url": "the3webs.com/en/",
+      "status": "in_production",
+      "marketplace": "https://www.amazon.com",
+      "isbn": { "paperback": null, "ebook": null },
+      "stub_line": null,
+      "release": null
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "/fr/",
+      "printed_url": "the3webs.com/fr/",
+      "status": "planned",
+      "marketplace": "https://www.amazon.fr",
+      "isbn": { "paperback": null, "ebook": null },
+      "stub_line": "Édition française — à paraître",
+      "release": null
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "/de/",
+      "printed_url": "the3webs.com/de/",
+      "status": "planned",
+      "marketplace": "https://www.amazon.de",
+      "isbn": { "paperback": null, "ebook": null },
+      "stub_line": "Deutsche Ausgabe — in Vorbereitung",
+      "release": null
+    },
+    {
+      "lang": "it",
+      "name": "Italiano",
+      "path": "/it/",
+      "printed_url": "the3webs.com/it/",
+      "status": "planned",
+      "marketplace": "https://www.amazon.it",
+      "isbn": { "paperback": null, "ebook": null },
+      "stub_line": "Edizione italiana — in preparazione",
+      "release": null
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "/es/",
+      "printed_url": "the3webs.com/es/",
+      "status": "planned",
+      "marketplace": "https://www.amazon.es",
+      "isbn": { "paperback": null, "ebook": null },
+      "stub_line": "Edición española — en preparación",
+      "release": null
+    },
+    {
+      "lang": "pt",
+      "name": "Português",
+      "path": "/pt/",
+      "printed_url": "the3webs.com/pt/",
+      "status": "planned",
+      "marketplace": "https://www.amazon.com.br",
+      "market_note": "Brazil. Portugal has no Amazon marketplace - confirm intended market before the PT cover is produced.",
+      "isbn": { "paperback": null, "ebook": null },
+      "stub_line": "Edição em português — em preparação",
+      "release": null
+    }
+  ],
+  "excluded": [
+    { "lang": "ro", "reason": "Not a KDP supported language, eBook or print. Separate route." },
+    { "lang": "nl", "reason": "KDP accepts no PDF interior. Needs a Word or ePub production line." },
+    { "lang": "sv", "reason": "KDP accepts no PDF interior." },
+    { "lang": "da", "reason": "KDP accepts no PDF interior." },
+    { "lang": "pl", "reason": "Paperback and hardcover only, no Kindle. PDF interior not accepted." },
+    { "lang": "ja", "reason": "eBook and paperback only, no hardcover. PDF interior not accepted." }
+  ]
+}
