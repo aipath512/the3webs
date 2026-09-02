@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Mode — a working manual for building real things inside a Claude Project</title>
+<meta name="description" content="A free, plain-English manual for running an actual product build inside a Claude Project: what CLAUDE.md, ROADMAP.md and REVIEW.md do, how plan mode works, and the eight elements that turn a chat into a workspace. With turnkey templates.">
+<meta property="og:title" content="Project Mode — a working manual">
+<meta property="og:description" content="What CLAUDE.md and the other .md files actually do, how plan mode works, and how to set up a Claude Project for a real build. Free, no signup.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#101418; --panel:#161c23; --panel-2:#1b222a; --line:#2b333d;
+  --text:#e7e3db; --muted:#98a3ae; --strong:#ffffff;
+  --amber:#d8a13f; --sage:#8aa86f; --clay:#c96b45;
+  --shadow:0 1px 0 rgba(255,255,255,.03);
+}
+html.light{
+  --bg:#f3f0e9; --panel:#ffffff; --panel-2:#faf8f3; --line:#ddd6c8;
+  --text:#1a1f24; --muted:#5c6670; --strong:#000000;
+  --amber:#9a6a12; --sage:#4d6b39; --clay:#a2451f;
+  --shadow:0 1px 2px rgba(20,25,30,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:"IBM Plex Serif",Georgia,serif; font-weight:600; color:var(--strong); line-height:1.25; margin:0}
+code,pre,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+a{color:var(--text); text-decoration-color:var(--amber); text-underline-offset:3px}
+a:hover{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+
+/* theme toggle — fixed top-left */
+#theme{
+  position:fixed; top:68px; left:18px; z-index:60;
+  display:flex; align-items:center; gap:8px; height:34px; padding:0 12px;
+  border-radius:8px; border:1px solid var(--line); cursor:pointer;
+  background:var(--strong); color:var(--bg);
+  font:500 13px/1 "IBM Plex Mono",monospace;
+}
+@media(max-width:1080px){#theme{top:12px; left:12px}}
+
+/* layout */
+.wrap{max-width:1180px; margin:0 auto; padding:0 24px}
+.masthead{border-bottom:1px solid var(--line); padding:72px 0 40px}
+.eyebrow{font:500 12px/1.4 "IBM Plex Mono",monospace; letter-spacing:.04em; color:var(--amber)}
+h1{font-size:clamp(34px,5.2vw,58px); margin:14px 0 0; max-width:19ch}
+.standfirst{max-width:62ch; margin:22px 0 0; font-size:19px; color:var(--muted)}
+.meta{margin-top:26px; font:400 13px/1.6 "IBM Plex Mono",monospace; color:var(--muted)}
+.meta b{color:var(--text); font-weight:500}
+
+.cols{display:grid; grid-template-columns:210px minmax(0,1fr); gap:56px; padding:44px 0 90px}
+@media(max-width:980px){.cols{grid-template-columns:1fr; gap:0}}
+nav.toc{position:sticky; top:24px; align-self:start; font:400 14px/1.5 "IBM Plex Mono",monospace}
+@media(max-width:980px){nav.toc{position:static; margin:0 0 44px; padding-bottom:28px; border-bottom:1px solid var(--line)}}
+nav.toc ol{list-style:none; margin:0; padding:0}
+nav.toc li{margin:0 0 9px}
+nav.toc a{display:block; color:var(--muted); text-decoration:none}
+nav.toc a:hover{color:var(--amber)}
+nav.toc .n{color:var(--line); margin-right:8px}
+html.light nav.toc .n{color:#c3bba9}
+
+main{min-width:0; max-width:74ch}
+section{padding:0 0 12px; margin:0 0 52px}
+section>h2{font-size:29px; margin:0 0 6px}
+.chapter{font:500 12px/1 "IBM Plex Mono",monospace; color:var(--amber); display:block; margin-bottom:14px}
+h3{font-size:20px; margin:34px 0 8px}
+p{margin:14px 0}
+main>section>p:first-of-type{margin-top:16px}
+ul,ol{padding-left:20px}
+li{margin:7px 0}
+hr{border:0; border-top:1px solid var(--line); margin:52px 0}
+strong{color:var(--strong); font-weight:600}
+
+.lede{font-size:19px; color:var(--muted); border-left:2px solid var(--amber); padding-left:18px; margin:20px 0 26px}
+
+figure{margin:26px 0}
+figcaption{font:400 13px/1.5 "IBM Plex Mono",monospace; color:var(--muted); margin-top:10px}
+
+pre{
+  background:var(--panel); border:1px solid var(--line); border-radius:6px;
+  padding:18px 20px; overflow-x:auto; font-size:13.5px; line-height:1.62;
+  margin:0; box-shadow:var(--shadow);
+}
+pre .c{color:var(--muted)}
+.tree{white-space:pre; font-size:13.5px}
+.tree .f{color:var(--amber)}
+.tree .d{color:var(--sage)}
+
+.block{margin:26px 0}
+.blockhead{
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  border:1px solid var(--line); border-bottom:0; border-radius:6px 6px 0 0;
+  background:var(--panel-2); padding:9px 14px 9px 16px;
+  font:500 13px/1 "IBM Plex Mono",monospace; color:var(--text);
+}
+.block pre{border-radius:0 0 6px 6px}
+.copy{
+  border:1px solid var(--line); background:transparent; color:var(--muted);
+  font:500 12px/1 "IBM Plex Mono",monospace; padding:6px 10px; border-radius:4px; cursor:pointer;
+}
+.copy:hover{color:var(--amber); border-color:var(--amber)}
+.copy.done{color:var(--sage); border-color:var(--sage)}
+
+/* eight-element map */
+.map{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:6px; overflow:hidden}
+@media(max-width:760px){.map{grid-template-columns:repeat(2,1fr)}}
+.cell{background:var(--panel); padding:16px 15px}
+.cell b{display:block; font:500 12px/1.3 "IBM Plex Mono",monospace; color:var(--amber); margin-bottom:6px}
+.cell span{display:block; font-size:14.5px; color:var(--text); line-height:1.45}
+.cell em{display:block; font-style:normal; font-size:13px; color:var(--muted); margin-top:6px}
+
+table{width:100%; border-collapse:collapse; margin:24px 0; font-size:15px}
+th,td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+th{font:500 12px/1.3 "IBM Plex Mono",monospace; color:var(--muted)}
+td:first-child{color:var(--strong)}
+
+.steps{counter-reset:s; list-style:none; padding:0; margin:26px 0}
+.steps>li{counter-increment:s; position:relative; padding:0 0 22px 46px; margin:0}
+.steps>li::before{
+  content:counter(s,decimal-leading-zero); position:absolute; left:0; top:2px;
+  font:500 13px/1 "IBM Plex Mono",monospace; color:var(--amber);
+}
+.steps h4{font-family:"IBM Plex Sans",sans-serif; font-size:16px; margin:0 0 4px}
+.steps p{margin:4px 0}
+.crumbs{font:400 13.5px/1.7 "IBM Plex Mono",monospace; color:var(--muted); margin:8px 0 0}
+.crumbs b{color:var(--text); font-weight:500}
+
+.warn{border-left:2px solid var(--clay); padding-left:18px; margin:24px 0}
+.warn h4{font-family:"IBM Plex Sans",sans-serif; font-size:16px; color:var(--clay); margin:0 0 4px}
+
+.who{border:1px solid var(--line); border-radius:6px; padding:2px 20px 6px; margin:24px 0; background:var(--panel)}
+.who h4{font-family:"IBM Plex Sans",sans-serif; font-size:16px; margin:18px 0 2px}
+.who p{margin:4px 0 14px; color:var(--muted); font-size:15.5px}
+
+.dl{display:flex; flex-wrap:wrap; gap:10px; margin:22px 0}
+.dl a{
+  border:1px solid var(--line); border-radius:5px; padding:9px 14px; text-decoration:none;
+  font:500 13px/1 "IBM Plex Mono",monospace; color:var(--text); background:var(--panel);
+}
+.dl a:hover{border-color:var(--amber); color:var(--amber)}
+
+footer{border-top:1px solid var(--line); padding:40px 0 70px; font-size:14px; color:var(--muted)}
+footer p{margin:8px 0; max-width:70ch}
+footer a{color:var(--muted)}
+.legal{font:400 12.5px/1.7 "IBM Plex Mono",monospace; margin-top:22px}
+</style>
+</head>
+<body>
+
+<button id="theme" type="button" aria-label="Switch to light mode">☀ Light</button>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="eyebrow">A free manual · English · no signup</span>
+    <h1>Project mode: how to stop re-explaining your work to Claude</h1>
+    <p class="standfirst">A chat forgets. A project doesn't. This is the whole method in one page — what a Claude Project actually is, what <code>CLAUDE.md</code> and the other markdown files do, how plan mode works, and how to set it all up for a real build. Every template on this page is yours to copy.</p>
+    <p class="meta">Written from a live build: <b>aireadyinjector.com</b>, a product site run entirely out of one project.<br>Last revised <b>2 September 2026</b>. Free to copy, adapt and republish.</p>
+  </div>
+</header>
+
+<div class="wrap cols">
+
+  <nav class="toc" aria-label="Contents">
+    <ol>
+      <li><a href="#c1"><span class="n">01</span>The chat that forgets</a></li>
+      <li><a href="#c2"><span class="n">02</span>What a project is</a></li>
+      <li><a href="#c3"><span class="n">03</span>The eight elements</a></li>
+      <li><a href="#c4"><span class="n">04</span>The files, decoded</a></li>
+      <li><a href="#c5"><span class="n">05</span>Plan mode</a></li>
+      <li><a href="#c6"><span class="n">06</span>The daily loop</a></li>
+      <li><a href="#c7"><span class="n">07</span>A real project</a></li>
+      <li><a href="#c8"><span class="n">08</span>Set it up</a></li>
+      <li><a href="#c9"><span class="n">09</span>What breaks it</a></li>
+      <li><a href="#c10"><span class="n">10</span>Who it pays off for</a></li>
+      <li><a href="#c11"><span class="n">11</span>Templates</a></li>
+      <li><a href="#src"><span class="n">—</span>Sources</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+  <section id="c1">
+    <span class="chapter">01</span>
+    <h2>The chat that forgets</h2>
+    <p>Most people use Claude the same way they use a search box. Open a tab, explain the situation, get an answer, close the tab. Tomorrow, open a new tab and explain the situation again.</p>
+    <p>That works until the work has a history. Then the cost shows up in three places. You spend the first ten minutes of every session rebuilding context. You get answers that contradict decisions you made last week, because nothing recorded them. And mistakes repeat, because the correction you typed on Tuesday lived only in Tuesday's tab.</p>
+    <p class="lede">A project is the fix, and it is not a clever prompt. It is a folder of plain text files that get read before every conversation, so the context stops being something you carry and becomes something the workspace holds.</p>
+    <p>Everything below is that idea, worked out in detail.</p>
+  </section>
+
+  <hr>
+
+  <section id="c2">
+    <span class="chapter">02</span>
+    <h2>What a project actually is</h2>
+    <p>Two different things are called "project mode" in practice, and mixing them up is the first source of confusion. Both are worth using. They work the same way underneath.</p>
+
+    <h3>In the Claude app: a Project</h3>
+    <p><cite index="19-1">Projects are self-contained workspaces with their own chat histories and knowledge bases. Inside each one you can upload documents, provide context, and hold focused chats.</cite> Two parts do the work:</p>
+    <ul>
+      <li><strong>Project knowledge</strong> — <cite index="19-1">documents, text, code or other files you upload, which Claude uses to understand the context and background of every individual chat inside that project.</cite></li>
+      <li><strong>Project instructions</strong> — <cite index="19-1">a set of instructions you define once for the project, to tailor how Claude responds in it.</cite></li>
+    </ul>
+    <p><cite index="19-1">Projects are available on every plan, including free accounts, which can create up to five.</cite> <cite index="19-1">On paid plans, when the knowledge base approaches the context limit, retrieval kicks in automatically to expand capacity while keeping response quality.</cite> <cite index="19-1">On Team and Enterprise plans a project can be shared with colleagues at view or edit level.</cite></p>
+    <p>One thing to understand early: separate chats inside a project do not read each other. What they share is the instructions and the uploaded files. That is exactly why the files matter — they are the only memory that survives between conversations.</p>
+
+    <h3>In Claude Code: the repository is the project</h3>
+    <p>If you work in a repo, the same job is done by a file called <code>CLAUDE.md</code> sitting in the folder. <cite index="10-1">Each session starts with a fresh context window, and CLAUDE.md files are instructions you write to give Claude persistent context across those sessions.</cite> You don't upload it. It is read from disk at the start of every session, along with any <code>CLAUDE.md</code> in the directories above it.</p>
+    <p>The practical translation: <strong>write the files once, use them in both places.</strong> Commit them to your repo so they are versioned, and upload the same files into the app project so a phone conversation and a terminal session are working from one manual.</p>
+  </section>
+
+  <hr>
+
+  <section id="c3">
+    <span class="chapter">03</span>
+    <h2>The eight elements</h2>
+    <p>A useful way to hold the whole thing in your head: eight parts, in the order you encounter them during a day of work. The first four set the work up. The last four close it out.</p>
+
+    <figure>
+      <div class="map">
+        <div class="cell"><b>WORKSPACE</b><span>The repo</span><em>One folder that holds everything the product is.</em></div>
+        <div class="cell"><b>MEMORY</b><span>Context files</span><em>What you would otherwise re-explain, written down once.</em></div>
+        <div class="cell"><b>BRIEF</b><span>Plan mode</span><em>Agree what will happen before anything is written.</em></div>
+        <div class="cell"><b>TICKET</b><span>A clear outcome</span><em>One finished artifact, not an activity.</em></div>
+        <div class="cell"><b>EYES</b><span>Preview</span><em>Look at the result, don't take its word for it.</em></div>
+        <div class="cell"><b>REVIEW</b><span>The checklist</span><em>The same list every time, built from real mistakes.</em></div>
+        <div class="cell"><b>SCHEDULE</b><span>Routines</span><em>Work that repeats, written so it can be handed over.</em></div>
+        <div class="cell"><b>PERMISSIONS</b><span>Delegation rules</span><em>What may happen without asking, and what may not.</em></div>
+      </div>
+      <figcaption>Above all eight sits one more decision: which model does which job. Heavier reasoning for architecture and planning, faster models for mechanical passes.</figcaption>
+    </figure>
+
+    <p>Most people who try a project and abandon it have set up the first two and none of the rest. Workspace and memory alone give you a better-informed assistant. It is the brief, the ticket and the review that change how much finished work you actually get.</p>
+  </section>
+
+  <hr>
+
+  <section id="c4">
+    <span class="chapter">04</span>
+    <h2>The files, decoded</h2>
+    <p>This is the part that looks intimidating from the outside: a folder full of capitalised <code>.md</code> files that everyone seems to understand except you. There is no magic in them. They are markdown — plain text with headings and bullets. The capitalisation is convention, nothing more. Only one filename is special.</p>
+
+    <figure>
+      <pre class="tree"><span class="f">CLAUDE.md</span>      how to work, who the customer is, the quality bar
+<span class="f">ROADMAP.md</span>     what matters this week, what is out of scope
+<span class="f">REVIEW.md</span>      what to check before shipping
+<span class="d">app/</span>           the thing that ships
+<span class="d">context/</span>       what the product is and why
+<span class="d">customers/</span>     who buys, what they said
+<span class="d">specs/</span>         decided behaviour, written before it is built
+<span class="d">demos/</span>         proof you can show a stranger
+<span class="d">routines/</span>      work that repeats</pre>
+      <figcaption>The repo becomes the desk. The files become the operating manual.</figcaption>
+    </figure>
+
+    <h3>CLAUDE.md — the only filename with special status</h3>
+    <p>In Claude Code, this one is read automatically. <cite index="10-1">Treat it as the place you write down what you would otherwise re-explain: add to it when the same mistake happens a second time, when a review catches something Claude should have known about this codebase, or when you type the same correction you typed last session.</cite></p>
+    <p>Three rules from the official guidance are worth following exactly:</p>
+    <ul>
+      <li><strong>Keep it short.</strong> <cite index="10-1">Target under 200 lines. Longer files consume more context and reduce how consistently the instructions are followed.</cite></li>
+      <li><strong>Be concrete enough to verify.</strong> <cite index="10-1">"Use 2-space indentation" beats "format code properly"; "run npm test before committing" beats "test your changes".</cite></li>
+      <li><strong>Remove contradictions.</strong> <cite index="10-1">If two rules conflict, one may get picked arbitrarily.</cite></li>
+    </ul>
+    <p>One honest limitation, stated in the docs and worth repeating: <cite index="10-1">CLAUDE.md is context, not enforced configuration.</cite> It shapes behaviour reliably; it does not physically prevent anything. If something must never happen, that belongs in a permission rule or a hook, not in a sentence.</p>
+    <p>If you're starting from an existing repo, <cite index="10-1">running <code>/init</code> generates a first CLAUDE.md by analysing the codebase, and suggests improvements rather than overwriting when one already exists.</cite></p>
+
+    <h3>ROADMAP.md — and why "out of scope" is the valuable half</h3>
+    <p>Four lines for this week. Each one a finished artifact, not an activity: "index.html v1 live" rather than "work on the homepage". Under it, two sections that matter more than the roadmap itself — decisions already made, with dates, and things explicitly out of scope.</p>
+    <p>The out-of-scope list is what stops you rebuilding the same argument every third week. It is also what stops Claude helpfully expanding the job while you weren't looking.</p>
+
+    <h3>REVIEW.md — the checklist, built from your own mistakes</h3>
+    <p>Write it the second time something goes wrong, not the first. Every blocker in it should be traceable to a real incident: a stale number that survived into a live page, a price hardcoded into HTML instead of read from its source file, vocabulary that arrived from somewhere else and stuck. The list turns those from accidents into things that cannot pass.</p>
+
+    <h3>The folders</h3>
+    <p>Six folders, one job each. <code>/app</code> is what ships. <code>/context</code> answers "why does this exist" for anyone arriving cold. <code>/customers</code> holds real people in their own words. <code>/specs</code> is behaviour decided before it is built — without a spec, "is this correct?" has no answer. <code>/demos</code> is proof you can show a stranger in two minutes. <code>/routines</code> is work that repeats.</p>
+
+    <h3>Other filenames you'll see</h3>
+    <table>
+      <tr><th>File</th><th>What it is</th></tr>
+      <tr><td><code>CLAUDE.local.md</code></td><td><cite index="10-1">Personal project preferences that shouldn't be committed — add it to .gitignore.</cite></td></tr>
+      <tr><td><code>.claude/rules/*.md</code></td><td><cite index="10-1">Instructions split by topic, optionally scoped to file paths so they load only when Claude works with matching files.</cite></td></tr>
+      <tr><td><code>AGENTS.md</code></td><td>The neutral equivalent used by other tools. <cite index="10-1">Claude Code reads CLAUDE.md, not AGENTS.md — if your repo already has one, create a CLAUDE.md that imports it with <code>@AGENTS.md</code>.</cite></td></tr>
+      <tr><td><code>MEMORY.md</code></td><td>Not yours to write. <cite index="10-1">It is the index of auto memory — notes Claude writes for itself from your corrections and preferences, stored per repository.</cite></td></tr>
+    </table>
+    <p>Everything else — <code>ROADMAP.md</code>, <code>REVIEW.md</code>, <code>FOLDERS.md</code> — is an ordinary file with a name you chose. It has weight because <code>CLAUDE.md</code> points at it, or because you uploaded it into the project knowledge.</p>
+  </section>
+
+  <hr>
+
+  <section id="c5">
+    <span class="chapter">05</span>
+    <h2>Plan mode</h2>
+    <p>Plan mode is the single highest-leverage thing on this page, and the least used.</p>
+    <p><cite index="8-1">It tells Claude to research and propose changes without making them: read files, run commands to explore, write a plan — but not edit your source. Edits stay blocked until you approve the plan.</cite></p>
+    <p>The value is not politeness. It is arithmetic. A task with twenty decision points, each right most of the time, is wrong overall more often than you'd guess. Plan mode moves every one of those decisions to a moment where reversing costs a sentence instead of a rollback.</p>
+
+    <h3>How to use it</h3>
+    <p><cite index="8-1">Enter it by pressing Shift+Tab, or by prefixing a single prompt with <code>/plan</code>. You can also start a session in it with <code>claude --permission-mode plan</code>.</cite> In VS Code and the desktop app there is a mode selector next to the prompt box.</p>
+    <p><cite index="8-1">When the plan is ready, you get three choices: approve and let it run, approve and review each edit individually, or keep planning and say what to change.</cite> <cite index="8-1">Ctrl+G opens the proposed plan in your text editor so you can rewrite it directly before anything proceeds.</cite> That last one is underrated — editing the plan is faster than describing the edit.</p>
+    <p><cite index="8-1">To make it the default for a project's terminal sessions, set <code>defaultMode</code> to <code>plan</code> in the project's <code>.claude/settings.json</code>.</cite></p>
+
+    <h3>The same discipline in a normal chat</h3>
+    <p>Plan mode is a Claude Code feature. In the app there is no read-only switch — but the behaviour is one sentence in your <code>CLAUDE.md</code>, and it works:</p>
+    <div class="block">
+      <div class="blockhead"><span>plan-mode rule for a chat project</span><button class="copy" type="button">copy</button></div>
+      <pre>When a change is more than a small edit, propose the plan first:
+which files change, what changes in each, in what order, and why.
+Wait for my approval. Do not write the file until I approve.</pre>
+    </div>
+    <p>The point of both versions is the same. Separate deciding from doing, and put yourself in between.</p>
+
+    <h3>When to skip it</h3>
+    <p>A typo fix does not need a plan. Plan mode earns its keep when the cost of a wrong first step is high: anything touching several files, anything structural, anything you would have to undo by hand.</p>
+  </section>
+
+  <hr>
+
+  <section id="c6">
+    <span class="chapter">06</span>
+    <h2>The daily loop</h2>
+    <p>Six moves. Once it is habit, a working session looks like this and nothing else.</p>
+
+    <ol class="steps">
+      <li>
+        <h4>Open the ticket, not the topic</h4>
+        <p>One outcome, phrased as a finished artifact. "The pricing page reads its numbers from pricing.json and passes REVIEW" — not "let's improve pricing".</p>
+      </li>
+      <li>
+        <h4>Ask for the plan</h4>
+        <p>Plan mode, or the sentence from chapter 05. Read what comes back for the thing you didn't ask for. That's where scope creep lives.</p>
+      </li>
+      <li>
+        <h4>Approve, correct, or narrow</h4>
+        <p>Correcting a plan costs a sentence. Correcting a build costs a session. Narrowing is usually the right move — half the plan, done properly.</p>
+      </li>
+      <li>
+        <h4>Build one file</h4>
+        <p>One file, finished, before the next one starts. Two half-finished files are worth less than one finished file, and much harder to review.</p>
+      </li>
+      <li>
+        <h4>Review before you look</h4>
+        <p>Ask for the header first: file name, where it goes, what URL it becomes, one line on what changed, and which blockers from REVIEW.md were cleared. Then open it.</p>
+      </li>
+      <li>
+        <h4>Write down what went wrong</h4>
+        <p>The second time a mistake appears, it goes into REVIEW.md or CLAUDE.md as a rule. This step is the entire compounding mechanism. Skip it and you are back to the chat that forgets.</p>
+      </li>
+    </ol>
+  </section>
+
+  <hr>
+
+  <section id="c7">
+    <span class="chapter">07</span>
+    <h2>A real project</h2>
+    <p>Abstract templates teach badly. Here is the actual shape of a project set up this week for <strong>aireadyinjector.com</strong> — a product site with its own worker, pricing file and public registry, run by one person.</p>
+    <p>Nine files went into the project knowledge: the three top-level markdown files, and one README for each of the six folders. The project instructions field got only the first and last sections of <code>CLAUDE.md</code> — how to work, and what is out of scope — because instructions are best spent on behaviour, with the detail left in the knowledge base.</p>
+
+    <h3>What went into CLAUDE.md, and why</h3>
+    <table>
+      <tr><th>Section</th><th>Why it exists</th></tr>
+      <tr><td>Canonical hierarchy</td><td>Company → flagship site → product → product site → audit engine. Every session used to start by re-explaining this.</td></tr>
+      <tr><td>Words we never use</td><td>Vocabulary that had drifted in from other tools and kept reappearing in copy. Listing it killed it.</td></tr>
+      <tr><td>One number, one file</td><td>The signal count had two different values in circulation. Naming the owning file ended the argument.</td></tr>
+      <tr><td>Prices come from pricing.json</td><td>A price hardcoded into HTML is a price that will be wrong on one page forever.</td></tr>
+      <tr><td>Readiness language only</td><td>Never "compliant", "certified" or "guaranteed" — claims the product cannot evidence.</td></tr>
+      <tr><td>The file header ritual</td><td>Before opening any file: number, upload path, resulting live URL, one-line description.</td></tr>
+    </table>
+
+    <p>Every line in that table came from something that had already gone wrong at least once. That is the whole method: <strong>a project file is a mistake that has been promoted to a rule.</strong></p>
+
+    <h3>What the roadmap looked like</h3>
+    <p>Four lines for the week, each one a file. Under them, the decisions with dates — including the ones that killed earlier decisions, which is the part people forget to write down. Under that, a short out-of-scope list, mostly good ideas belonging to other properties.</p>
+
+    <div class="warn">
+      <h4>The one that catches everyone</h4>
+      <p>Six folders each want a <code>README.md</code>. Uploaded into project knowledge, six files called <code>README.md</code> collide — the last one wins and you quietly lose five. Rename them <code>context-README.md</code>, <code>customers-README.md</code> and so on before uploading, or put all six into one <code>FOLDERS.md</code> as in the templates below.</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="c8">
+    <span class="chapter">08</span>
+    <h2>Set it up</h2>
+    <p>Eight steps, written the way I want instructions written: where you are, what you click, what you see, what you do next. Fifteen minutes for the first project.</p>
+
+    <ol class="steps">
+      <li>
+        <h4>Create the project</h4>
+        <p class="crumbs"><b>Where:</b> claude.ai, left sidebar<br><b>Click:</b> Projects → Create project<br><b>See:</b> a name and description field<br><b>Do:</b> name it after the thing, not the category. "AI-READY INJECTOR", not "Work".</p>
+      </li>
+      <li>
+        <h4>Write CLAUDE.md first</h4>
+        <p class="crumbs"><b>Where:</b> any text editor<br><b>Do:</b> start from the template below and fill in sections 1, 2 and 5 only<br><b>See:</b> roughly one page<br><b>Next:</b> resist writing more. The file grows from real corrections, not from imagination.</p>
+      </li>
+      <li>
+        <h4>Write ROADMAP.md and REVIEW.md</h4>
+        <p class="crumbs"><b>Do:</b> four roadmap lines for this week; three blockers in REVIEW you have already been burned by<br><b>See:</b> two short files<br><b>Next:</b> if you cannot name three past mistakes, ship one thing first and come back.</p>
+      </li>
+      <li>
+        <h4>Upload the knowledge</h4>
+        <p class="crumbs"><b>Where:</b> inside the project, right-hand panel<br><b>Click:</b> Project knowledge → Add content<br><b>See:</b> your files listed with the percentage of context they occupy<br><b>Watch for:</b> duplicate filenames overwriting each other.</p>
+      </li>
+      <li>
+        <h4>Set the project instructions</h4>
+        <p class="crumbs"><b>Click:</b> Set project instructions<br><b>Do:</b> paste only the "how to work with me" and "out of scope" sections<br><b>Why:</b> instructions define behaviour; the knowledge base carries information. Mixing them wastes both.</p>
+      </li>
+      <li>
+        <h4>Commit the same files to your repo</h4>
+        <p class="crumbs"><b>Where:</b> repository root<br><b>Do:</b> commit CLAUDE.md, ROADMAP.md and REVIEW.md<br><b>Result:</b> Claude Code reads CLAUDE.md automatically in every terminal session, and the files are versioned — you can see when a rule was added and why.</p>
+      </li>
+      <li>
+        <h4>Turn on plan mode where you code</h4>
+        <p class="crumbs"><b>Where:</b> a Claude Code session<br><b>Do:</b> press Shift+Tab until the status bar shows plan mode, or prefix a prompt with <code>/plan</code><br><b>See:</b> a written plan and three approval options instead of immediate edits.</p>
+      </li>
+      <li>
+        <h4>Run one real task through the loop</h4>
+        <p class="crumbs"><b>Do:</b> take the first roadmap line and run chapter 06 end to end<br><b>Then:</b> whatever annoyed you during that session becomes the first new line in CLAUDE.md or REVIEW.md. The project is now alive.</p>
+      </li>
+    </ol>
+  </section>
+
+  <hr>
+
+  <section id="c9">
+    <span class="chapter">09</span>
+    <h2>What breaks it</h2>
+
+    <h3>Writing the files as a wish list</h3>
+    <p>The instinct is to write everything you hope will be true. What works is the opposite: write only what has already caused a problem. A file of twelve earned rules outperforms a file of sixty imagined ones, and it stays short enough to be followed.</p>
+
+    <h3>Letting CLAUDE.md sprawl</h3>
+    <p><cite index="10-1">Past a couple of hundred lines, the file eats context and adherence drops.</cite> When it grows, move the detail into the knowledge base or into path-scoped rules and keep the main file as the index.</p>
+
+    <h3>Contradicting yourself across files</h3>
+    <p>Two files claiming ownership of the same fact is the most common cause of "why did it use the old number?" Section 4 of the template exists for this: one fact, one owner, written down.</p>
+
+    <h3>Treating instructions as enforcement</h3>
+    <p>A line in CLAUDE.md is strong guidance, not a lock. Anything that must be structurally impossible belongs in permission rules or a hook.</p>
+
+    <h3>Forgetting to re-upload after editing</h3>
+    <p>A file edited in your repo does not update itself in the app's project knowledge. When a rule changes, change it in both places, or the two surfaces will start giving you different answers.</p>
+
+    <h3>Never opening the files again</h3>
+    <p>A project that is set up once and never revised is just a longer prompt. The compounding comes from step six of the loop.</p>
+  </section>
+
+  <hr>
+
+  <section id="c10">
+    <span class="chapter">10</span>
+    <h2>Who it pays off for</h2>
+
+    <div class="who">
+      <h4>The solo founder</h4>
+      <p>Biggest gain, by a distance. You are the only person holding the context, and you hold it badly across three weeks and five properties. The project holds it instead, and your decisions stop evaporating.</p>
+
+      <h4>The consultant or agency</h4>
+      <p>One project per client. The client's vocabulary, constraints and approved claims live in their project and cannot leak into someone else's deliverable. Onboarding a second person becomes a file transfer instead of a briefing.</p>
+
+      <h4>The small team</h4>
+      <p>Shared projects on Team and Enterprise plans mean everyone gets the same standards without a meeting about standards. The review checklist becomes team property rather than one person's habit.</p>
+
+      <h4>The non-developer</h4>
+      <p>Nothing on this page requires code. A markdown file is a text file with headings. If you run a practice, a shop or an editorial calendar, the same three files — how we work, what matters now, what to check before publishing — do the same job.</p>
+
+      <h4>Where it is overkill</h4>
+      <p>One-off questions, throwaway drafting, anything with no history and no next session. Setting up a project for a single task costs more than it returns. The threshold is roughly: will I come back to this next week?</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="c11">
+    <span class="chapter">11</span>
+    <h2>Templates</h2>
+    <p>Copy from the page or download the files. No attribution required, no signup, nothing to buy.</p>
+
+    <div class="dl">
+      <a href="templates/CLAUDE.md" download>CLAUDE.md</a>
+      <a href="templates/ROADMAP.md" download>ROADMAP.md</a>
+      <a href="templates/REVIEW.md" download>REVIEW.md</a>
+      <a href="templates/FOLDERS.md" download>FOLDERS.md</a>
+    </div>
+
+    <div class="block">
+      <div class="blockhead"><span>CLAUDE.md</span><button class="copy" type="button">copy</button></div>
+      <pre># CLAUDE.md
+
+<span class="c">&lt;!-- The operating manual for this project. Claude reads this first, every session.
+     Keep it under ~200 lines. Facts and rules only — no history, no narrative. --&gt;</span>
+
+## 1. What this project is
+
+- Product: &lt;name&gt; — &lt;one sentence a stranger would understand&gt;
+- Live at: &lt;domain&gt;
+- Repository: &lt;owner/repo&gt;
+- Deployed by: &lt;how a file gets from the repo to the live site&gt;
+- Primary language: &lt;EN&gt;. Secondary: &lt;none&gt;
+
+## 2. Who the customer is
+
+- Buyer: &lt;role, company size, country&gt;
+- What they are trying to avoid: &lt;the fear or cost&gt;
+- What they are buying: &lt;the outcome, not the feature&gt;
+- What they already tried: &lt;so we don't sell it again&gt;
+
+## 3. Words we use, words we never use
+
+Use: &lt;term&gt;, &lt;term&gt;, &lt;term&gt;
+Never use: &lt;term&gt;, &lt;term&gt;, &lt;term&gt;
+
+## 4. Sources of truth
+
+One fact, one file. If two files disagree, the one named here wins.
+
+| Fact | Owner |
+| --- | --- |
+| Prices | `pricing.json` |
+| &lt;count / metric&gt; | `&lt;file&gt;` |
+| Legal identity | `&lt;file&gt;` |
+
+Never hardcode a fact that a file already owns.
+
+## 5. How to work with me
+
+- One file at a time. Finish it, then ask before starting the next.
+- Before opening any file, show: file number, exact upload path, resulting live
+  URL, one-line description of what changed.
+- When a change is more than a small edit, propose the plan first. I approve,
+  then you write.
+- If a request conflicts with this file, say so instead of guessing.
+- Ask when a decision is mine to make. Don't invent a number, a price, a date,
+  a partner name, or a legal detail.
+
+## 6. Definition of done
+
+- [ ] Passes every line in `REVIEW.md`
+- [ ] Every fact comes from a source of truth in section 4
+- [ ] Works on mobile at 380px
+- [ ] Claims nothing we cannot evidence
+
+## 7. Out of scope
+
+- &lt;thing that keeps pulling attention&gt;
+- &lt;the redesign that is not this week&gt;
+- &lt;the feature that needs a decision I have not made&gt;</pre>
+    </div>
+
+    <div class="block">
+      <div class="blockhead"><span>ROADMAP.md</span><button class="copy" type="button">copy</button></div>
+      <pre># ROADMAP.md
+
+Updated: &lt;YYYY-MM-DD&gt;
+
+## This week
+
+Four lines. Each one a finished artifact, not an activity.
+
+1. &lt;file or page&gt; — &lt;what "done" looks like&gt;
+2. &lt;file or page&gt; — &lt;what "done" looks like&gt;
+3. &lt;file or page&gt; — &lt;what "done" looks like&gt;
+4. &lt;file or page&gt; — &lt;what "done" looks like&gt;
+
+## Next, not now
+
+- &lt;the good idea that would eat the week&gt;
+- &lt;the second product&gt;
+
+## Out of scope for this project
+
+- &lt;thing that belongs to another site&gt;
+- &lt;thing that needs a partner decision&gt;
+
+## Decisions already made
+
+- &lt;YYYY-MM-DD&gt; — &lt;decision&gt;. Reason: &lt;one line&gt;. Replaces: &lt;what it killed&gt;.
+- &lt;YYYY-MM-DD&gt; — &lt;decision&gt;. Reason: &lt;one line&gt;.
+
+## Open questions
+
+- &lt;question&gt; — needed before &lt;which roadmap line&gt;</pre>
+    </div>
+
+    <div class="block">
+      <div class="blockhead"><span>REVIEW.md</span><button class="copy" type="button">copy</button></div>
+      <pre># REVIEW.md
+
+## Blockers — a file with any of these does not ship
+
+- [ ] A number that contradicts the source of truth in `CLAUDE.md` section 4
+- [ ] A price written into the page instead of read from `pricing.json`
+- [ ] Vocabulary from the "never use" list
+- [ ] A claim we cannot evidence ("certified", "guaranteed", "compliant")
+- [ ] A link, file, or endpoint that returns 404
+- [ ] A name, logo, or partner reference I did not approve
+
+## Check before shipping
+
+- [ ] Renders at 380px wide without horizontal scroll
+- [ ] Every internal link resolves
+- [ ] Metadata matches the visible page
+- [ ] Nothing changed outside the file we agreed to touch
+
+## How to report
+
+1. File number and name
+2. Exact upload path in the repo
+3. Resulting live URL
+4. One line: what changed
+5. Which blockers were relevant and how each was cleared
+
+## Mistakes log
+
+- &lt;YYYY-MM-DD&gt; — &lt;what broke&gt; → new rule: &lt;the line added above&gt;</pre>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="src">
+    <h2>Sources</h2>
+    <p>Product behaviour on this page comes from Anthropic's own documentation, checked on 2 September 2026. Where the docs and this page disagree, the docs are right.</p>
+    <ul>
+      <li><a href="https://support.claude.com/en/articles/9517075-what-are-projects">What are projects?</a> — project knowledge, project instructions, plan availability, sharing</li>
+      <li><a href="https://code.claude.com/docs/en/memory">How Claude remembers your project</a> — CLAUDE.md, file locations, size guidance, rules, auto memory</li>
+      <li><a href="https://code.claude.com/docs/en/permission-modes">Choose a permission mode</a> — plan mode, approval options, defaults</li>
+      <li><a href="https://code.claude.com/docs/en/best-practices">Best practices for Claude Code</a></li>
+    </ul>
+  </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Free to use.</strong> Copy this page, the templates, or the whole method into your own work, commercially or not. No attribution required.</p>
+    <p>Written by Dan Ionescu while building the AiVenture site network. If it saved you an afternoon, that was the point.</p>
+    <p class="legal">
+      AiVenture S.R.L. · CUI 51415878 · Nr. Reg. Com. J2025016406000 · EUID ROONRC.J2025016406000<br>
+      București, Sectorul 1, Drumul Pădurea Pustnicu 141C, Corp A, Etaj 2, Ap. 5, Romania<br>
+      Claude and Claude Code are products of Anthropic. This is an independent guide, not an Anthropic publication.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme');
+  function set(light){
+    root.classList.toggle('light',light);
+    root.classList.toggle('dark',!light);
+    btn.textContent = light ? '☾ Dark' : '☀ Light';
+    btn.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
+  }
+  btn.addEventListener('click',function(){ set(!root.classList.contains('light')); });
+
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var pre=b.closest('.block').querySelector('pre');
+      var done=function(){ b.textContent='copied'; b.classList.add('done');
+        setTimeout(function(){ b.textContent='copy'; b.classList.remove('done'); },1600); };
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(pre.textContent).then(done,function(){ b.textContent='select manually'; });
+      } else {
+        var r=document.createRange(); r.selectNodeContents(pre);
+        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='selected';
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
